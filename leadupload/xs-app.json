@@ -1,0 +1,59 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "routes": [   
+    {
+        "authenticationType": "none",
+        "csrfProtection": false,
+        "source": "^/CPI_CLONING/",
+        "target": "/",
+        "destination": "CPI_CLONING"
+    },
+    {
+        "authenticationType": "xsuaa",
+        "csrfProtection": false,
+        "source": "^/CPI_BMI_AZURE_SERVICE_RT410/(.*)$",
+        "target": "$1",
+        "destination": "CPI_BMI_AZURE_SERVICE_RT410"
+    },
+    {
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "source": "^/CPI_BMI_AZURE_SERVICE_RT400/(.*)$",
+      "target": "$1",
+      "destination": "CPI_BMI_AZURE_SERVICE_RT400"
+    },
+    {
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "source": "^/CPI_BMI_AZURE_SERVICE_BQC400/(.*)$",
+      "target": "$1",
+      "destination": "CPI_BMI_AZURE_SERVICE_BQC400"
+    },
+    {
+      "source": "^/resources/(.*)$",
+      "target": "/resources/$1",
+      "authenticationType": "none",
+      "destination": "ui5"
+    },
+    {
+      "source": "^/test-resources/(.*)$",
+      "target": "/test-resources/$1",
+      "authenticationType": "none",
+      "destination": "ui5"
+    },
+    {
+        "authenticationType": "xsuaa",
+        "csrfProtection": false,
+        "source": "^/CPI_PROXY_BMI_API_DEV/(.*)$",
+        "target": "$1",
+        "destination": "CPI_PROXY_BMI_API_DEV"
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }  
+  ]
+}

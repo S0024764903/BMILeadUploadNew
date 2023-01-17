@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l='sap.ui.layout' xmlns:core='sap.ui.core'
+    xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:u='sap.ui.unified'
+    xmlns:form='sap.ui.layout.form' xmlns:t='sap.ui.table'>
+    <!--<ResponsivePopover id="idPopover" title="{i18n>Notes}" class="sapUiContentPadding" placement="Left">
+        <content>
+            <TextArea id="idTxtArea" value="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat" rows="8" />
+        </content>
+    </ResponsivePopover> -->
+    <Dialog id="idNotesDialog" showHeader='false' resizable='true' draggable='true' contentWidth="200px" contentHeight="200px">
+        <Panel id="idPanelNotes">
+            <Toolbar id="idNotesTB">
+                <Title id="idNotesTitle" text="{i18n>Notes}" />
+            </Toolbar>
+            <TextArea id="idTxtArea" value="{gModelRef>/LeadList/Notes}" rows="8" width="100%" height="150px"/>
+        </Panel>
+        <buttons>
+            <Button id="idNotesClose" type="Emphasized" text="{i18n>Cancel}" press="handleClose" />
+            <Button id="idNotesUpdate" type="Emphasized" text="{i18n>Update}" press="handleProceed" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

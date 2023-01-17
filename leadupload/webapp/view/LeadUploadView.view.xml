@@ -1,0 +1,665 @@
+<mvc:View controllerName="com.sap.bmi.zc4cui5leadupload.controller.LeadUploadView" xmlns:t='sap.ui.table' xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" displayBlock="true">
+    <Page id="page" title="{i18n>title}" showHeader='false' enableScrolling='true'>
+        <content>
+            <Toolbar id="idTB0" height="7%">
+                <!-- fileType="csv,xls,xlsx" -->
+                <u:FileUploader id="idFileUploader" fileType="csv" maximumFilenameLength="30" sameFilenameAllowed="true" multiple="false" placeholder="{i18n>FileUPloaderPH}" width="20rem" change="handleOnChangeFU" uploadComplete="handleUploadComplete" />
+                <Button id="idBtnDownloadTemplate" icon="sap-icon://excel-attachment" text="{i18n>DownloadTemplate}" press="handleOnDownloadTemplate" type="Neutral" />
+                <ToolbarSpacer id="idTBS1" />
+                <Label id="idLblRunID" text="{i18n>LblRunID}" labelFor="idInpRunID" required="true" />
+                <Input id="idInpRunID" value="{gModelRef>/LeadList/RunID}" placeholder="{i18n>InpRunID}" width="11rem" editable="false" />
+                <ToolbarSpacer id="idTBS2" />
+                <Button id="idBtnImport" icon="sap-icon://download" text="{i18n>Import}" press="handleOnImport" type="Neutral" />
+                <Button id="idBtnExport" icon="sap-icon://upload" text="{i18n>Export}" press="handleOnExport" type="Critical" />
+                <Button id="idBtnUploadToSalesCloud" icon="sap-icon://upload-to-cloud" text="{i18n>UploadToSalesCloud}" type="Success" press="handleOnUploadToSalesCloud" enabled="{gModelRef>/LeadList/Enabled/UploadToSalesCloud}" />
+            </Toolbar>
+            <Toolbar id="idTB1" height="7%">
+                <Label id="idLblTotalLeads" text="{i18n>TotalLeads} : " labelFor="idLnkTotalLeads" />
+                <Link id="idLnkTotalLeads" text="{gModelRef>/LeadList/leadCount/totalLeads}" press="handleTotalLeadsPress" />
+                <ToolbarSpacer id="idTBS3" />
+                <ProgressIndicator id="idProgress" percentValue="{gModelRef>/LeadList/ProgressIndicator/percentValue}" displayValue="{gModelRef>/LeadList/ProgressIndicator/displayValue}" showValue="true" state="None" width="40rem" />
+                <ToolbarSpacer id="idTBS4" />
+                <Button id="idBtnValidateLeads" icon="sap-icon://validate" text="{i18n>ValidateLeads}" press="handleOnValidateLeads" type="Emphasized" />
+                <Button id="idBtnDelete" icon="sap-icon://delete" text="{i18n>Delete}" press="handleOnDelete" type="Attention" />
+                <Button id="idBtnDeleteAll" icon="sap-icon://clear-all" text="{i18n>DeleteAll}" press="handleOnDeleteAll" type="Negative" />
+            </Toolbar>
+            <Panel id="idPanelLinks" visible='{gModelRef>/LeadList/linkVisible}' />
+            <Panel id="idListPanel">
+                <ScrollContainer id="idScrollCon">
+                    <t:Table
+                        id="idTableJ"
+                        rows="{path: 'gModelRef>/LeadList/rows'}"
+                        enableColumnFreeze="true"
+                        enableCellFilter="true"
+                        selectionMode="MultiToggle"
+                        visibleRowCount='12'
+                        ariaLabelledBy="title"
+                        rowSelectionChange='handleRowSelectionChange'
+                        enableColumnReordering="false"
+                        enableSelectAll="true"
+                    >
+                        <t:rowSettingsTemplate>
+                            <t:RowSettings id="idRowState_r1" highlight="{gModelRef>Row_State}" highlightText="{gModelRef>Row_State}" />
+                        </t:rowSettingsTemplate>
+                        <t:columns>
+                            <t:Column headerSpan="7" id="idExternal_Key_c1" sortProperty="External_Key" filterProperty="External_Key" resizable="true" width='7rem'>
+                                <t:multiLabels>
+                                    <Label id="id_LH1" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
+                                    <Label id="idExternal_Key_l1" textAlign="Center" text="{i18n>External_Key}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idExternal_Key_i1" value='{gModelRef>External_Key}' change='handleChangeInput_External_Key' tooltip='{gModelRef>External_Key}' valueState='{gModelRef>Fld_VS_External_Key}' valueStateText='{gModelRef>Fld_VST_External_Key}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idName_c1" sortProperty="Name" filterProperty="Name" resizable="true" width='20rem'>
+                                <t:multiLabels>
+                                    <Label id="id_LH2" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
+                                    <Label id="idName_l1" textAlign="Center" text="{i18n>Name}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idName_i1" value='{gModelRef>Name}' change='handleChangeInput_Name' tooltip='{gModelRef>Name}' valueState='{gModelRef>Fld_VS_Name}' valueStateText='{gModelRef>Fld_VST_Name}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idQualification_Level_c1" sortProperty="Qualification_Level" filterProperty="Qualification_Level" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_LH3" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
+                                    <Label id="idQualification_Level_l1" textAlign="Center" text="{i18n>Qualification_Level}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idQualification_Level_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Qualification_Level}'
+                                        valueStateText='{gModelRef>Fld_VST_Qualification_Level}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{
+                                            path: 'gModelRef>Qualification_Level',
+                                            parts:['gModelRef>Qualification_Level'],
+                                            formatter:'.fnFormat_Qualification_Level'
+                                        }"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Qualification_Level',
+                                            sorter: { path: 'code' }
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idQualification_Level_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idStatus_c1" sortProperty="Status" filterProperty="Status" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_LH4" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
+                                    <Label id="idStatus_l1" textAlign="Center" text="{i18n>Status}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idStatus_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Status}'
+                                        valueStateText='{gModelRef>Fld_VST_Status}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{path: 'gModelRef>Status', parts:['gModelRef>Status'],formatter:'.fnFormat_Status'}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Status',
+                                            sorter: { path: 'code' }
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idStatus_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idSource_c1" sortProperty="Source" filterProperty="Source" resizable="true" width='14rem'>
+                                <t:multiLabels>
+                                    <Label id="id_LH5" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
+                                    <Label id="idSource_l1" textAlign="Center" text="{i18n>Source}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idSource_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Source}'
+                                        valueStateText='{gModelRef>Fld_VST_Source}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{parts:['gModelRef>Source'],formatter:'.fnFormat_Source'}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Source',
+                                            sorter: { path: 'code' }
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idvSource_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idCategory_c1" sortProperty="Category" filterProperty="Category" resizable="true" width='11rem'>
+                                <t:multiLabels>
+                                    <Label id="id_LH6" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
+                                    <Label id="idCategory_l1" textAlign="Center" text="{i18n>Category}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idCategory_s1"
+                                        width="100%"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Category}'
+                                        valueStateText='{gModelRef>Fld_VST_Category}'
+                                        selectedKey="{gModelRef>Category}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Category',
+                                            sorter: { path: 'code' }
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idCategory_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idOwner_Party_ID_c1" sortProperty="Owner_Party_ID" filterProperty="Owner_Party_ID" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_LH7" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
+                                    <Label id="idOwner_Party_ID_l1" textAlign="Center" text="{i18n>Owner_Party_ID}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idOwner_Party_ID_i1" value='{gModelRef>Owner_Party_ID}' change='handleChangeInput_Owner_Party_ID' tooltip='{gModelRef>Owner_Party_ID}' valueState='{gModelRef>Fld_VS_Owner_Party_ID}' valueStateText='{gModelRef>Fld_VST_Owner_Party_ID}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column headerSpan="5" id="idCompany_c1" sortProperty="Company" filterProperty="Company" resizable="true" width='15rem'>
+                                <t:multiLabels>
+                                    <Label id="id_LH8" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
+                                    <Label id="idCompany_l1" textAlign="Center" text="{i18n>Company}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idCompany_i1" value='{gModelRef>Company}' change='handleChangeInput_Company' tooltip='{gModelRef>Company}' valueState='{gModelRef>Fld_VS_Company}' valueStateText='{gModelRef>Fld_VST_Company}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idAccount_Information_Address1_c1" sortProperty="Address_1" filterProperty="Address_1" resizable="true" width='15rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AI1" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
+                                    <Label id="idAccount_Information_Address_1_l1" textAlign="Center" text="{i18n>Address_1}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idAccount_Information_Address_1_i1" value='{gModelRef>Address_1}' tooltip='{gModelRef>Address_1}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idAccount_Information_Address_2_c1" sortProperty="Address_2" filterProperty="Address_2" resizable="true" width='15rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AI2" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
+                                    <Label id="idAccount_Information_Address_2_l1" textAlign="Center" text="{i18n>Address_2}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idAccount_Information_Address_2_i1" value='{gModelRef>Address_2}' tooltip='{gModelRef>Address_2}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idAccount_Information_Street_c1" sortProperty="Account_Information_Street" filterProperty="Account_Information_Street" resizable="true" width='15rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AI3" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
+                                    <Label id="idAccount_Information_Street_l1" textAlign="Center" text="{i18n>Account_Information_Street}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idAccount_Information_Street_i1" value='{gModelRef>Account_Information_Street}' change='handleChangeInput_Account_Information_Street' tooltip='{gModelRef>Account_Information_Street}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idCustomer_Information_City_c1" sortProperty="Customer_Information_City" filterProperty="Customer_Information_City" resizable="true" width='15rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AI4" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
+                                    <Label id="idCustomer_Information_City_l1" textAlign="Center" text="{i18n>Customer_Information_City}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idCustomer_Information_City_i1" value='{gModelRef>Customer_Information_City}' change='handleChangeInput_Customer_Information_City' tooltip='{gModelRef>Customer_Information_City}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idAccount_Information_Postal_Code_c1" sortProperty="Account_Information_Postal_Code" filterProperty="Account_Information_Postal_Code" resizable="true" width='7rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AI5" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
+                                    <Label id="idAccount_Information_Postal_Code_l1" textAlign="Center" text="{i18n>Account_Information_Postal_Code}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idAccount_Information_Postal_Code_i1" value='{gModelRef>Account_Information_Postal_Code}' change='handleChangeInput_Account_Information_Postal_Code' tooltip='{gModelRef>Account_Information_Postal_Code}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idAccount_Information_Country_c1" sortProperty="Account_Information_Country" filterProperty="Account_Information_Country" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AI6" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
+                                    <Label id="idAccount_Information_Country_l1" textAlign="Center" text="{i18n>Account_Information_Country}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idAccount_Information_Country_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Account_Information_Country}'
+                                        valueStateText='{gModelRef>Fld_VST_Account_Information_Country}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{gModelRef>Account_Information_Country}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Country'
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idAccount_Information_Country_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column headerSpan="7" id="idContact_Information_Title_c1" sortProperty="Contact_Information_Title" filterProperty="Contact_Information_Title" resizable="true" width='8rem'>
+                                <t:multiLabels>
+                                    <Label id="id_CI1" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
+                                    <Label id="idContact_Information_Title_l1" textAlign="Center" text="{i18n>Contact_Information_Title}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idContact_Information_Title_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Contact_Information_Title}'
+                                        valueStateText='{gModelRef>Fld_VST_Contact_Information_Title}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{
+                                            path: 'gModelRef>Contact_Information_Title',
+                                            parts:['gModelRef>Contact_Information_Title'],
+                                            formatter:'.fnFormat_Contact_Information_Title'
+                                        }"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Contact_Information_Title'
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idContact_Information_Title_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idContact_First_Name_c1" sortProperty="Contact_First_Name" filterProperty="Contact_First_Name" resizable="true" width='15rem'>
+                                <t:multiLabels>
+                                    <Label id="id_CI2" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
+                                    <Label id="idContact_First_Name_l1" textAlign="Center" text="{i18n>Contact_First_Name}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idContact_First_Name_i1" value='{gModelRef>Contact_First_Name}' change='handleChangeInput_Contact_First_Name' tooltip='{gModelRef>Contact_First_Name}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idContact_Middle_Name_c1" sortProperty="Contact_Middle_Name" filterProperty="Contact_Middle_Name" resizable="true" width='15rem'>
+                                <t:multiLabels>
+                                    <Label id="id_CI3" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
+                                    <Label id="idContact_Middle_Name_l1" textAlign="Center" text="{i18n>Contact_Middle_Name}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idContact_Middle_Name_i1" value='{gModelRef>Contact_Middle_Name}' change='handleChangeInput_Contact_Middle_Name' tooltip='{gModelRef>Contact_Middle_Name}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idContact_Last_Name_c1" sortProperty="Contact_Last_Name" filterProperty="Contact_Last_Name" resizable="true" width='15rem'>
+                                <t:multiLabels>
+                                    <Label id="id_CI4" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
+                                    <Label id="idContact_Last_Name_l1" textAlign="Center" text="{i18n>Contact_Last_Name}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input
+                                        id="idContact_Last_Name_i1"
+                                        value='{gModelRef>Contact_Last_Name}'
+                                        change='handleChangeInput_Contact_Last_Name'
+                                        tooltip='{gModelRef>Contact_Last_Name}'
+                                        valueState='{gModelRef>Fld_VS_Contact_Last_Name}'
+                                        valueStateText='{gModelRef>Fld_VST_Contact_Last_Name}'
+                                        editable='{gModelRef>/editable}'
+                                    />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idContact_Information_Phone_c1" sortProperty="Contact_Information_Phone" filterProperty="Contact_Information_Phone" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_CI5" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
+                                    <Label id="idContact_Information_Phone_l1" textAlign="Center" text="{i18n>Contact_Information_Phone}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input
+                                        id="idContact_Information_Phone_i1"
+                                        type="Number"
+                                        value='{gModelRef>Contact_Information_Phone}'
+                                        change='handleChangeInput_Contact_Information_Phone'
+                                        tooltip='{gModelRef>Contact_Information_Phone}'
+                                        valueState='{gModelRef>Fld_VS_Contact_Information_Phone}'
+                                        valueStateText='{gModelRef>Fld_VST_Contact_Information_Phone}'
+                                        editable='{gModelRef>/editable}'
+                                    />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idContact_Information_Email_c1" sortProperty="Contact_Information_Email" filterProperty="Contact_Information_Email" resizable="true" width='12rem'>
+                                <t:multiLabels>
+                                    <Label id="id_CI6" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
+                                    <Label id="idContact_Information_Email_l1" textAlign="Center" text="{i18n>Contact_Information_Email}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input
+                                        id="idContact_Information_Email_i1"
+                                        type="Email"
+                                        value='{gModelRef>Contact_Information_Email}'
+                                        change='handleChangeInput_Contact_Information_Email'
+                                        tooltip='{gModelRef>Contact_Information_Email}'
+                                        valueState='{gModelRef>Fld_VS_Contact_Information_Email}'
+                                        valueStateText='{gModelRef>Fld_VST_Contact_Information_Email}'
+                                        editable='{gModelRef>/editable}'
+                                    />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idContact_Information_Mobile_c1" sortProperty="Contact_Information_Mobile" filterProperty="Contact_Information_Mobile" resizable="true" width='12rem'>
+                                <t:multiLabels>
+                                    <Label id="id_CI7" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
+                                    <Label id="idContact_Information_Mobile_l1" textAlign="Center" text="{i18n>Contact_Information_Mobile}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input
+                                        id="idContact_Information_Mobile_i1"
+                                        type="Tel"
+                                        value='{gModelRef>Contact_Information_Mobile}'
+                                        change='handleChangeInput_Contact_Information_Mobile'
+                                        tooltip='{gModelRef>Contact_Information_Mobile}'
+                                        valueState='{gModelRef>Fld_VS_Contact_Information_Mobile}'
+                                        valueStateText='{gModelRef>Fld_VST_Contact_Information_Mobile}'
+                                        editable='{gModelRef>/editable}'
+                                    />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idIndividual_Customer_Information_Country_c1" sortProperty="Individual_Customer_Information_Country" filterProperty="Individual_Customer_Information_Country" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_CI8" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
+                                    <Label id="idIndividual_Customer_Information_Country_l1" textAlign="Center" wrapping="true" text="{i18n>Individual_Customer_Information_Country}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idIndividual_Customer_Information_Country_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Individual_Customer_Information_Country}'
+                                        valueStateText='{gModelRef>Fld_VST_Individual_Customer_Information_Country}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{gModelRef>Individual_Customer_Information_Country}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Country'
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idIndividual_Customer_Information_Country_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column headerSpan="8" id="idExpected_Revenue_Value_c1" sortProperty="Expected_Revenue_Value" filterProperty="Expected_Revenue_Value" resizable="true" width='7rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF1" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idExpected_Revenue_Value_l1" textAlign="Center" wrapping="true" text="{i18n>Expected_Revenue_Value}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input
+                                        id="idExpected_Revenue_Value_i1"
+                                        value='{gModelRef>Expected_Revenue_Value}'
+                                        change='handleChangeInput_Expected_Revenue_Value'
+                                        tooltip='{gModelRef>Expected_Revenue_Value}'
+                                        valueState='{gModelRef>Fld_VS_Expected_Revenue_Value}'
+                                        valueStateText='{gModelRef>Fld_VST_Expected_Revenue_Value}'
+                                        editable='{gModelRef>/editable}'
+                                    />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idExpected_Revenue_Amount_Currency_c1" sortProperty="Expected_Revenue_Amount_Currency" filterProperty="Expected_Revenue_Amount_Currency" resizable="true" width='7rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF2" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idExpected_Revenue_Amount_Currency_l1" textAlign="Center" wrapping="true" text="{i18n>Expected_Revenue_Amount_Currency}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <!-- sorter: { path: 'code' } -->
+                                    <Select
+                                        id="idExpected_Revenue_Amount_Currency_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Expected_Revenue_Amount_Currency}'
+                                        valueStateText='{gModelRef>Fld_VST_Expected_Revenue_Amount_Currency}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{gModelRef>Expected_Revenue_Amount_Currency}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Expected_Revenue_Amount_Currency'
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idExpected_Revenue_Amount_Currency_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idLM_BR_Reference_Number_c1" sortProperty="LM_BR_Reference_Number" filterProperty="LM_BR_Reference_Number" resizable="true" width='9rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF3" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idLM_BR_Reference_Number_l1" textAlign="Center" wrapping="true" text="{i18n>LM_BR_Reference_Number}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idLM_BR_Reference_Number_i1" value='{gModelRef>LM_BR_Reference_Number}' change='handleChangeInput_LM_BR_Reference_Number' tooltip='{gModelRef>LM_BR_Reference_Number}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idGross_Roof_Area_c1" sortProperty="Gross_Roof_Area" filterProperty="Gross_Roof_Area" resizable="true" width='6rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF4" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idGross_Roof_Area_l1" textAlign="Center" wrapping="true" text="{i18n>Gross_Roof_Area}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idGross_Roof_Area_i1" value="{gModelRef>Gross_Roof_Area}" change='handleChangeInput_Gross_Roof_Area' tooltip='{gModelRef>Gross_Roof_Area}' valueState='{gModelRef>Fld_VS_Gross_Roof_Area}' valueStateText='{gModelRef>Fld_VST_Gross_Roof_Area}' editable='{gModelRef>/editable}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idGross_Roof_AreaUnitCode_c1" sortProperty="Gross_Roof_AreaUnitCode" filterProperty="Gross_Roof_AreaUnitCode" resizable="true" width='6rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF5" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idGross_Roof_AreaUnitCode_l1" textAlign="Center" wrapping="true" text="{i18n>Gross_Roof_AreaUnitCode}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idGross_Roof_AreaUnitCode_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Gross_Roof_AreaUnitCode}'
+                                        valueStateText='{gModelRef>Fld_VST_Gross_Roof_AreaUnitCode}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{gModelRef>Gross_Roof_AreaUnitCode}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Gross_Roof_AreaUnitCode'
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idGross_Roof_AreaUnitCode_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idSegment_SpecialisationTarget_Group_c1" sortProperty="Segment_SpecialisationTarget_Group" filterProperty="Segment_SpecialisationTarget_Group" resizable="true" width='14rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF6" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idSegment_SpecialisationTarget_Group_l1" textAlign="Center" wrapping="true" text="{i18n>Segment_SpecialisationTarget_Group}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idSegment_SpecialisationTarget_Group_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Segment_SpecialisationTarget_Group}'
+                                        valueStateText='{gModelRef>Fld_VST_Segment_SpecialisationTarget_Group}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{gModelRef>Segment_SpecialisationTarget_Group}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Segment_SpecialisationTarget_Group',
+                                            sorter: { path: 'code' }
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idSegment_SpecialisationTarget_Group_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idSegment_Specialization_2_c1" sortProperty="Segment_Specialization_2" filterProperty="Segment_Specialization_2" resizable="true" width='18rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF7" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idSegment_Specialization_2_l1" textAlign="Center" wrapping="true" text="{i18n>Segment_Specialization_2}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idSegment_Specialization_2_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Segment_Specialization_2}'
+                                        valueStateText='{gModelRef>Fld_VST_Segment_Specialization_2}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{gModelRef>Segment_Specialization_2}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Segment_Specialization_2',
+                                            sorter: { path: 'code' }
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idSegment_Specialization_2_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idNotes_c1" sortProperty="Notes" filterProperty="Notes" resizable="true" width='3.5rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF8" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idNotes_l1" textAlign="Center" text="{i18n>Notes}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Button id="idNotes_b1" icon="sap-icon://notes" press="handleOnNotes" enabled='{gModelRef>/enabled}'/>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idStart_of_Construction_c1" sortProperty="Start_of_Construction" filterProperty="Start_of_Construction" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF9" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idStart_of_Construction_l1" textAlign="Center" text="{i18n>Start_of_Construction}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                <DateTimePicker
+                                        id="idStart_of_Construction_i1"
+                                        placeholder="Enter Date"
+                                        valueFormat="yyyy-MM-dd'T'hh:mm:ss"
+                                        displayFormat="yyyy-MM-dd'T'hh:mm:ss"
+                                        valueState='{gModelRef>Fld_VS_Start_of_Construction}'
+                                        valueStateText='{gModelRef>Fld_VST_Start_of_Construction}'
+                                        tooltip='{gModelRef>Start_of_Construction}'
+                                        change="handleChangeInput_Start_of_Construction"
+                                        value='{gModelRef>Start_of_Construction}'
+                                        class="sapUiSmallMarginBottom"
+                                        editable='{gModelRef>/editable}'
+                                    />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idEnd_of_Construction_c1" sortProperty="End_of_Construction" filterProperty="End_of_Construction" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF10" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idEnd_of_Construction_l1" textAlign="Center" text="{i18n>End_of_Construction}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <DateTimePicker
+                                        id="idEnd_of_Construction_i1"
+                                        placeholder="Enter Date"
+                                        valueFormat="yyyy-MM-dd'T'hh:mm:ss"
+                                        displayFormat="yyyy-MM-dd'T'hh:mm:ss"
+                                        valueState='{gModelRef>Fld_VS_End_of_Construction}'
+                                        valueStateText='{gModelRef>Fld_VST_End_of_Construction}'
+                                        tooltip='{gModelRef>End_of_Construction}'
+                                        change="handleChangeInput_End_of_Construction"
+                                        value='{gModelRef>End_of_Construction}'
+                                        class="sapUiSmallMarginBottom"
+                                        editable='{gModelRef>/editable}'
+                                    />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idBuilding_Cost_c1" sortProperty="Building_Cost" filterProperty="Building_Cost" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF11" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idBuilding_Cost_l1" textAlign="Center" text="{i18n>Building_Cost}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idBuilding_Cost_i1" value='{gModelRef>Building_Cost}' change='handleChangeInput_Building_Cost' tooltip='{gModelRef>Building_Cost}' valueState='{gModelRef>Fld_VS_Building_Cost}' valueStateText='{gModelRef>Fld_VST_Building_Cost}' editable='{gModelRef>/editable}' />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idBuilding_Cost_Currency" sortProperty="Building_Cost_Currency" filterProperty="Building_Cost_Currency" resizable="true" width='7rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF15" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idBuilding_Cost_Currency_l1" textAlign="Center" wrapping="true" text="{i18n>Building_Cost_Currency}" required="true" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <!-- sorter: { path: 'code' } -->
+                                    <Select
+                                        id="Building_Cost_Currency_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Building_Cost_Currency}'
+                                        valueStateText='{gModelRef>Fld_VST_Building_Cost_Currency}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{gModelRef>Building_Cost_Currency}"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Building_Cost_Currency'
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="Building_Cost_Currency_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idReference_1_c1" sortProperty="Reference_1" filterProperty="Reference_1" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF12" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idReference_1_l1" textAlign="Center" text="{i18n>Reference_1}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idReference_1_i1" value='{gModelRef>Reference_1}' change='handleChangeReference_1' tooltip='{gModelRef>Reference_1}' valueState='{gModelRef>Fld_VS_Reference_1}' valueStateText='{gModelRef>Fld_VST_Reference_1}' editable='{gModelRef>/editable}' />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idProbability_c1" sortProperty="Probability" filterProperty="Probability" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF13" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idProbability_l1" textAlign="Center" text="{i18n>Probability}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Input id="idProbability_i1" value='{gModelRef>Probability}' change='handleChangeInput_Probability' tooltip='{gModelRef>Probability}' valueState='{gModelRef>Fld_VS_Probability}' valueStateText='{gModelRef>Fld_VST_Probability}' editable='{gModelRef>/editable}' />
+                                </t:template>
+                            </t:Column>
+                            <t:Column id="idSpecialisation_FR_PR_c1" sortProperty="Specialisation_FR_PR" filterProperty="Specialisation_FR_PR" resizable="true" width='10rem'>
+                                <t:multiLabels>
+                                    <Label id="id_AF14" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idSpecialisation_FR_PR_l1" textAlign="Center" text="{i18n>Specialisation_FR_PR}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idSpecialisation_FR_PR_i1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Specialisation_FR_PR}'
+                                        valueStateText='{gModelRef>Fld_VST_Specialisation_FR_PR}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{
+                                            path: 'gModelRef>Specialisation_FR_PR',
+                                            parts:['gModelRef>Specialisation_FR_PR']
+                                        }"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Specialisation_FR_PR',
+                                            sorter: { path: 'code' }
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idSpecialisation_FR_PR_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
+                        </t:columns>
+                    </t:Table>
+                </ScrollContainer>
+            </Panel>
+        </content>
+    </Page>
+</mvc:View>

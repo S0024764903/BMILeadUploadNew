@@ -1,0 +1,29 @@
+<core:FragmentDefinition xmlns='sap.m' xmlns:l='sap.ui.layout' xmlns:f='sap.ui.layout.form' xmlns:core='sap.ui.core'
+    xmlns:t='sap.ui.table'>
+    <Dialog id="idDialog" draggable="true" contentHeight='300px' contentWidth='400px' resizable="false" showHeader="true"
+        title="{i18n>AvailableFiles} ({gModelRef>/LeadList/Files/count})">
+        <!--<OverflowToolbar id="idOverflowToolbar">
+            <SearchField id="idSearchFieldPlanos" width='60%' value='{gModelRef>/LeadList/Files/value}'
+                enabled="true" placeholder='{i18n>FileName}'
+                search='handleSearchFiles' />
+            <ToolbarSpacer id="idToolbarSpacer" />
+        </OverflowToolbar> -->
+        <t:Table id='idTable' rows="{path: 'gModelRef>/LeadList/Files/rows', templateShareable:false}"
+            selectionMode="Single" selectionBehavior="RowOnly" visibleRowCount="7" ariaLabelledBy="title" width="100%"
+            rowSelectionChange='handleFileSelection'>
+            <t:columns>
+                <t:Column id='idColumn' resizable="true" sortProperty="name" filterProperty="Name"
+                    showFilterMenuEntry="false" showSortMenuEntry="true">
+                    <Label id='idLabel' textAlign="Center" text="{i18n>Name}" />
+                    <t:template>
+                        <Text id='idText' text="{gModelRef>Name}" tooltip='{gModelRef>Name}' wrapping="false"
+                            wrappingType="Normal" />
+                    </t:template>
+                </t:Column>
+            </t:columns>
+        </t:Table>
+        <buttons>
+            <Button id='idButton' text="{i18n>Cancel}" press='handleCancel' tooltip='{i18n>Cancel}' />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>
