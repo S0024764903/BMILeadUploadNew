@@ -51,8 +51,8 @@ sap.ui.define([], function () {
             Contact_Information_Email: "Contact_Information_Email",
             Contact_Information_Mobile: "Contact_Information_Mobile",
             Individual_Customer_Information_Country: "Individual_Customer_Information_Country",
-            Expected_Revenue_Value: "Expected_Revenue_Value",
-            Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
+            // Expected_Revenue_Value: "Expected_Revenue_Value",
+            // Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
             LM_BR_Reference_Number: "LM_BR_Reference_Number",
             Gross_Roof_Area: "Gross_Roof_Area",
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
@@ -86,7 +86,7 @@ sap.ui.define([], function () {
             Contact_Information_Phone: "Contact_Information_Phone",
             Contact_Information_Email: "Contact_Information_Email",
             Contact_Information_Mobile: "Contact_Information_Mobile",
-            Expected_Revenue_Value: "Expected_Revenue_Value",
+            // Expected_Revenue_Value: "Expected_Revenue_Value",
             Building_Cost: "Building_Cost",
             Gross_Roof_Area: "Gross_Roof_Area"
         },
@@ -104,7 +104,7 @@ sap.ui.define([], function () {
             Individual_Customer_Information_Country: "Individual_Customer_Information_Country"
         },
         PARTIAL_MANDATORY_FIELDS: {
-            Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
+            // Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
             Building_Cost_Currency: "Building_Cost_Currency"
         },
@@ -114,12 +114,7 @@ sap.ui.define([], function () {
             Source: "Source",
             Category: "Category",
             Account_Information_Country: "Account_Information_Country",
-            // Contact_Information_Title: "Contact_Information_Title",
             Individual_Customer_Information_Country: "Individual_Customer_Information_Country"
-            // Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
-            // Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
-            // Segment_SpecialisationTarget_Group: "Segment_SpecialisationTarget_Group",
-            // Segment_Specialization_2: "Segment_Specialization_2",
         },
         DROPDOWN_FIELDS: {
             Qualification_Level: "Qualification_Level",
@@ -129,7 +124,7 @@ sap.ui.define([], function () {
             Account_Information_Country: "Account_Information_Country",
             Contact_Information_Title: "Contact_Information_Title",
             Individual_Customer_Information_Country: "Individual_Customer_Information_Country",
-            Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
+            // Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
             Segment_SpecialisationTarget_Group: "Segment_SpecialisationTarget_Group",
             Segment_Specialization_2: "Segment_Specialization_2",

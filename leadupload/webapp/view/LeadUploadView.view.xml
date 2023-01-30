@@ -391,7 +391,7 @@
                                     </Select>
                                 </t:template>
                             </t:Column>
-                            <t:Column headerSpan="8" id="idExpected_Revenue_Value_c1" sortProperty="Expected_Revenue_Value" filterProperty="Expected_Revenue_Value" resizable="true" width='7rem'>
+                            <!-- <t:Column headerSpan="8" id="idExpected_Revenue_Value_c1" sortProperty="Expected_Revenue_Value" filterProperty="Expected_Revenue_Value" resizable="true" width='7rem'>
                                 <t:multiLabels>
                                     <Label id="id_AF1" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
                                     <Label id="idExpected_Revenue_Value_l1" textAlign="Center" wrapping="true" text="{i18n>Expected_Revenue_Value}" required="false" />
@@ -414,7 +414,6 @@
                                     <Label id="idExpected_Revenue_Amount_Currency_l1" textAlign="Center" wrapping="true" text="{i18n>Expected_Revenue_Amount_Currency}" required="true" />
                                 </t:multiLabels>
                                 <t:template>
-                                    <!-- sorter: { path: 'code' } -->
                                     <Select
                                         id="idExpected_Revenue_Amount_Currency_s1"
                                         change="handleChangeSelect"
@@ -432,7 +431,7 @@
                                         <core:Item id="idExpected_Revenue_Amount_Currency_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
                                     </Select>
                                 </t:template>
-                            </t:Column>
+                            </t:Column> -->
                             <t:Column id="idLM_BR_Reference_Number_c1" sortProperty="LM_BR_Reference_Number" filterProperty="LM_BR_Reference_Number" resizable="true" width='9rem'>
                                 <t:multiLabels>
                                     <Label id="id_AF3" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
@@ -540,11 +539,11 @@
                                     <Label id="idStart_of_Construction_l1" textAlign="Center" text="{i18n>Start_of_Construction}" required="false" />
                                 </t:multiLabels>
                                 <t:template>
-                                <DateTimePicker
+                                <DatePicker          
                                         id="idStart_of_Construction_i1"
                                         placeholder="Enter Date"
-                                        valueFormat="yyyy-MM-dd'T'hh:mm:ss"
-                                        displayFormat="yyyy-MM-dd'T'hh:mm:ss"
+                                        valueFormat="yyyy-MM-dd"
+                                        displayFormat="dd/MM/yyyy"
                                         valueState='{gModelRef>Fld_VS_Start_of_Construction}'
                                         valueStateText='{gModelRef>Fld_VST_Start_of_Construction}'
                                         tooltip='{gModelRef>Start_of_Construction}'
@@ -561,11 +560,11 @@
                                     <Label id="idEnd_of_Construction_l1" textAlign="Center" text="{i18n>End_of_Construction}" required="false" />
                                 </t:multiLabels>
                                 <t:template>
-                                    <DateTimePicker
+                                    <DatePicker                                        
                                         id="idEnd_of_Construction_i1"
                                         placeholder="Enter Date"
-                                        valueFormat="yyyy-MM-dd'T'hh:mm:ss"
-                                        displayFormat="yyyy-MM-dd'T'hh:mm:ss"
+                                        valueFormat="yyyy-MM-dd"
+                                        displayFormat="dd/MM/yyyy"
                                         valueState='{gModelRef>Fld_VS_End_of_Construction}'
                                         valueStateText='{gModelRef>Fld_VST_End_of_Construction}'
                                         tooltip='{gModelRef>End_of_Construction}'

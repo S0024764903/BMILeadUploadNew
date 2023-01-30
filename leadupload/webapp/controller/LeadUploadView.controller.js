@@ -191,13 +191,13 @@ sap.ui.define([
                         { code: "Z014", name: this.getLanguageText("DhrMr") },
                         { code: "Z015", name: this.getLanguageText("MmeMs") },
                     ],
-                    Expected_Revenue_Amount_Currency: [
-                        { code: "EUR", name: this.getLanguageText("Euro") },
-                        { code: "GBP", name: this.getLanguageText("PoundSterling") },
-                        { code: "NOK", name: this.getLanguageText("NorwegianKrone") },
-                        { code: "SEK", name: this.getLanguageText("SwedishKrona") },
-                        { code: "DKK", name: this.getLanguageText("DanishKrone") },
-                    ],
+                    // Expected_Revenue_Amount_Currency: [
+                    //     { code: "EUR", name: this.getLanguageText("Euro") },
+                    //     { code: "GBP", name: this.getLanguageText("PoundSterling") },
+                    //     { code: "NOK", name: this.getLanguageText("NorwegianKrone") },
+                    //     { code: "SEK", name: this.getLanguageText("SwedishKrona") },
+                    //     { code: "DKK", name: this.getLanguageText("DanishKrone") },
+                    // ],
                     Building_Cost_Currency: [
                         { code: "EUR", name: this.getLanguageText("Euro") },
                         { code: "GBP", name: this.getLanguageText("PoundSterling") },
@@ -421,22 +421,37 @@ sap.ui.define([
                     oItem.Qualification_Level = that.fnFormat_Qualification_Level(oItem.Qualification_Level);
                     oItem.Contact_Information_Title = that.fnFormat_Contact_Information_Title(oItem.Contact_Information_Title);
             
-                    if(oItem.End_of_Construction !== ""){
-                        oItem.End_of_Construction = that.resetDateTime(oItem.End_of_Construction);
-                    }
-                    if(oItem.Start_of_Construction !== ""){
-                        oItem.Start_of_Construction = that.resetDateTime(oItem.Start_of_Construction);
-                    }
+                    // if(oItem.End_of_Construction !== ""){
+                    //     oItem.End_of_Construction = that.resetDateTime(oItem.End_of_Construction);
+                    // }
+                    // if(oItem.Start_of_Construction !== ""){
+                    //     oItem.Start_of_Construction = that.resetDateTime(oItem.Start_of_Construction);
+                    // }
                 });
                 that.gModelRef.refresh();
             },
 
-            resetDateTime: function (sDate) {
-                var sFinalDate = sDate;
-                if(sDate.length === 10){
-                    sFinalDate = sDate.concat("T00:00:00"); 
+            // resetDateTime: function (sDate) {
+            //     var sFinalDate = sDate;
+            //     if(sDate.length <= 10){
+            //         sFinalDate = sDate.concat("T00:00:00"); 
+            //     }
+            //     return sFinalDate;
+            // },
+
+            resetDateTime:function(acRows){
+                var finalRows = acRows;
+                for (let i = 0; i < finalRows.length; i++) {
+                    const element = finalRows[i].Start_of_Construction;
+                    const element2 = finalRows[i].End_of_Construction;
+                    if( element.length === 10 || element.length === 9 ){
+                        finalRows[i].Start_of_Construction = element.concat("T00:00:00");
+                    };
+                    if(element2.length === 10 || element2.length === 9){
+                        finalRows[i].End_of_Construction = element2.concat("T00:00:00");
+                       }
                 }
-                return sFinalDate;
+                return finalRows;
             },
 
             setChangedDropDownValues: function(oField, oRowData, oSelKey){
@@ -511,18 +526,18 @@ sap.ui.define([
                             colSetting.field == "Source" || colSetting.field == "Category" ||
                             colSetting.field == "Owner_Party_ID" || colSetting.field == "Account_Information_Country" ||
                             colSetting.field == "Contact_Last_Name" || colSetting.field == "Individual_Customer_Information_Country" ||
-                            colSetting.field == "Expected_Revenue_Amount_Currency" || colSetting.field == "Gross_Roof_AreaUnitCode" || 
+                            colSetting.field == "Gross_Roof_AreaUnitCode" || 
                             colSetting.field == "Building_Cost_Currency" )
                             colSetting.required = true;
                         if (colSetting.field == "Qualification_Level" || colSetting.field == "Status" ||
                             colSetting.field == "Source" || colSetting.field == "Category" || colSetting.field == "Account_Information_Country" ||
                             colSetting.field == "Individual_Customer_Information_Country" || colSetting.field == "Gross_Roof_AreaUnitCode" ||
-                            colSetting.field == "Expected_Revenue_Amount_Currency" || colSetting.field == "Segment_SpecialisationTarget_Group" ||
+                            colSetting.field == "Segment_SpecialisationTarget_Group" ||
                             colSetting.field == "Segment_Specialization_2" || colSetting.field == "Contact_Information_Title" || colSetting.field == "Specialisation_FR_PR" || 
                             colSetting.field == "Building_Cost_Currency")
                             colSetting.collection = true;
                         if (colSetting.field == "External_Key" || colSetting.field == "Account_Information_Postal_Code" || colSetting.field == "Contact_Information_Phone" ||
-                            colSetting.field == "Expected_Revenue_Value" || colSetting.field == "Expected_Revenue_Amount_Currency" || colSetting.field == "LM_BR_Reference_Number" ||
+                            colSetting.field == "LM_BR_Reference_Number" ||
                             colSetting.field == "Gross_Roof_Area" || colSetting.field == "Gross_Roof_AreaUnitCode" || colSetting.field == "Segment_SpecialisationTarget_Group" ||
                             colSetting.field == "Segment_Specialization_2" || colSetting.field == "Specialisation_FR_PR" ||
                             colSetting.field == "Start_of_Construction" || colSetting.field == "End_of_Construction" || 
@@ -560,7 +575,7 @@ sap.ui.define([
                         !this.hasValue(dataObj.Account_Information_Postal_Code) && !this.hasValue(dataObj.Account_Information_Country) && !this.hasValue(dataObj.Contact_Information_Title) &&
                         !this.hasValue(dataObj.Contact_First_Name) && !this.hasValue(dataObj.Contact_Middle_Name) && !this.hasValue(dataObj.Contact_Last_Name) &&
                         !this.hasValue(dataObj.Contact_Information_Phone) && !this.hasValue(dataObj.Contact_Information_Email) && !this.hasValue(dataObj.Individual_Customer_Information_Country) &&
-                        !this.hasValue(dataObj.Expected_Revenue_Value) && !this.hasValue(dataObj.Expected_Revenue_Amount_Currency) && !this.hasValue(dataObj.LM_BR_Reference_Number) &&
+                        !this.hasValue(dataObj.LM_BR_Reference_Number) &&
                         !this.hasValue(dataObj.Gross_Roof_Area) && !this.hasValue(dataObj.Gross_Roof_AreaUnitCode) && !this.hasValue(dataObj.Segment_SpecialisationTarget_Group) &&
                         !this.hasValue(dataObj.Segment_Specialization_2) && !this.hasValue(dataObj.Notes) && !this.hasValue(dataObj.Start_of_Construction) && !this.hasValue(dataObj.End_of_Construction) &&
                         !this.hasValue(dataObj.Building_Cost) && !this.hasValue(dataObj.Building_Cost_Currency) && !this.hasValue(dataObj.Reference_1) && !this.hasValue(dataObj.Probability) && !this.hasValue(dataObj.Specialisation_FR_PR)) {
@@ -602,17 +617,17 @@ sap.ui.define([
                         }.bind(this));
                         $.each(constants.PARTIAL_MANDATORY_FIELDS, function (c, field) {
                             var bError = false;
-                            if (c.indexOf("Expected_Revenue_Amount_Currency") > -1) {
-                                if (this.DataCategory.Tot_Leads[i].Expected_Revenue_Value === "") {
-                                    this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VS_}Expected_Revenue_Amount_Currency`] = sap.ui.core.ValueState.None;
-                                    this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VST_}Expected_Revenue_Amount_Currency`] = "";
-                                } else if (this.DataCategory.Tot_Leads[i].Expected_Revenue_Value !== "" && this.DataCategory.Tot_Leads[i].Expected_Revenue_Amount_Currency === "") {
-                                    bError = true;
-                                    this.ErrorFields.push(`${constants.PREFIXES.Err_ND_}${field}`);
-                                    this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VS_}Expected_Revenue_Amount_Currency`] = sap.ui.core.ValueState.Error;
-                                    this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VST_}Expected_Revenue_Amount_Currency`] = this.getLanguageText(`${constants.PREFIXES.Err_ND_}Expected_Revenue_Amount_Currency`);
-                                }
-                            }
+                            // if (c.indexOf("Expected_Revenue_Amount_Currency") > -1) {
+                            //     if (this.DataCategory.Tot_Leads[i].Expected_Revenue_Value === "") {
+                            //         this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VS_}Expected_Revenue_Amount_Currency`] = sap.ui.core.ValueState.None;
+                            //         this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VST_}Expected_Revenue_Amount_Currency`] = "";
+                            //     } else if (this.DataCategory.Tot_Leads[i].Expected_Revenue_Value !== "" && this.DataCategory.Tot_Leads[i].Expected_Revenue_Amount_Currency === "") {
+                            //         bError = true;
+                            //         this.ErrorFields.push(`${constants.PREFIXES.Err_ND_}${field}`);
+                            //         this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VS_}Expected_Revenue_Amount_Currency`] = sap.ui.core.ValueState.Error;
+                            //         this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VST_}Expected_Revenue_Amount_Currency`] = this.getLanguageText(`${constants.PREFIXES.Err_ND_}Expected_Revenue_Amount_Currency`);
+                            //     }
+                            // }
                            
                             if (c.indexOf("Gross_Roof_AreaUnitCode") > -1) {
                                 if (this.DataCategory.Tot_Leads[i].Gross_Roof_Area === "") {
@@ -679,9 +694,9 @@ sap.ui.define([
                             if (field == "Contact_Information_Email") {
                                 this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Err_FRMT_}${field}`] = (this.hasValue(sValue) ? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(sValue) ? false : true : false);
                             }
-                            if (field == "Expected_Revenue_Value") {
-                                this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Err_FRMT_}${field}`] = (this.hasValue(sValue) ? /^\d+([.]\d{0,2})?$/.test(sValue) ? false : true : false);
-                            }
+                            // if (field == "Expected_Revenue_Value") {
+                            //     this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Err_FRMT_}${field}`] = (this.hasValue(sValue) ? /^\d+([.]\d{0,2})?$/.test(sValue) ? false : true : false);
+                            // }
                             if (field == "Building_Cost") {
                                 this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Err_FRMT_}${field}`] = (this.hasValue(sValue) ? /^\d+([.]\d{0,2})?$/.test(sValue) ? false : true : false);
                             }
@@ -703,21 +718,19 @@ sap.ui.define([
                 this.gModelRef.getData().LeadList.leadCount.totalErrorLeads = this.DataCategory.Tot_Leads.filter(function (itm) { return itm.Row_State == "Error" }).length;
                 this.gModelRef.getData().LeadList.leadCount.missingMandatoryFields = this.DataCategory.Tot_Leads.filter(function (itm) {
                     var oFields = {};
-                    if ((itm.Gross_Roof_Area === 0 || itm.Gross_Roof_Area === undefined) && !(itm.Expected_Revenue_Amount === "" || itm.Expected_Revenue_Amount === undefined)) {
+                    if (itm.Gross_Roof_Area === 0 || itm.Gross_Roof_Area === undefined) {
                         oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Qualification_Level || itm.Err_ND_Status || itm.Err_ND_Source ||
-                            itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country ||
-                            itm.Err_ND_Expected_Revenue_Amount_Currency);
-                    } else if ((itm.Expected_Revenue_Amount === "" || itm.Expected_Revenue_Amount === undefined) && !(itm.Gross_Roof_Area === 0 || itm.Gross_Roof_Area === undefined)) {
+                            itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country);
+                    } else if (!(itm.Gross_Roof_Area === 0 || itm.Gross_Roof_Area === undefined)) {
                         oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Qualification_Level || itm.Err_ND_Status || itm.Err_ND_Source ||
                             itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country ||
                             itm.Err_ND_Gross_Roof_AreaUnitCode);
-                    } else if ((itm.Gross_Roof_Area === 0 || itm.Gross_Roof_Area === undefined) && (itm.Expected_Revenue_Amount === "" || itm.Expected_Revenue_Amount === undefined)) {
+                    } else if (itm.Gross_Roof_Area === 0 || itm.Gross_Roof_Area === undefined) {
                         oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Qualification_Level || itm.Err_ND_Status || itm.Err_ND_Source ||
                             itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country);
                     } else {
                         oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Qualification_Level || itm.Err_ND_Status || itm.Err_ND_Source ||
-                            itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country ||
-                            itm.Err_ND_Expected_Revenue_Amount_Currency || itm.Err_ND_Gross_Roof_AreaUnitCode);
+                            itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country || itm.Err_ND_Gross_Roof_AreaUnitCode);
                     }
                     return oFields;
                 }).length;
@@ -916,7 +929,7 @@ sap.ui.define([
                         oFilter.push(new sap.ui.model.Filter("Account_Information_Country", sap.ui.model.FilterOperator.EQ, ""));
                         oFilter.push(new sap.ui.model.Filter("Contact_Last_Name", sap.ui.model.FilterOperator.EQ, ""));
                         oFilter.push(new sap.ui.model.Filter("Individual_Customer_Information_Country", sap.ui.model.FilterOperator.EQ, ""));
-                        oFilter.push(new sap.ui.model.Filter("Expected_Revenue_Amount_Currency", sap.ui.model.FilterOperator.EQ, ""));
+                        // oFilter.push(new sap.ui.model.Filter("Expected_Revenue_Amount_Currency", sap.ui.model.FilterOperator.EQ, ""));
                         oFilter.push(new sap.ui.model.Filter("Building_Cost_Currency", sap.ui.model.FilterOperator.EQ, ""));
                         oFilter.push(new sap.ui.model.Filter("Gross_Roof_AreaUnitCode", sap.ui.model.FilterOperator.EQ, ""));
                         aFilter.push(new sap.ui.model.Filter({
@@ -1055,10 +1068,12 @@ sap.ui.define([
                 mParameters.success = function (result, xhr, data) {
                     var sToken = data.getResponseHeader("x-csrf-token");
                     if (bCallFrom) {
-                        var aLeadRows = this.eliminateUnwantedFields($.extend(true, [], this.gModelRef.getData().LeadList.rows), false);
+                        var aLeadRows = this.eliminateUnwantedFields($.extend(true, [], c), false);
                         this._doExportLeads(aLeadRows, sToken);
                     } else {
                         var aLeadRows = this.eliminateUnwantedFields($.extend(true, [], this.gModelRef.getData().LeadList.rows), true);
+                        // Adding logic for Date
+                        this.resetDateTime(aLeadRows);
                         this._doUploadSalesLeads(aLeadRows, sToken);
                         this.DataCategory.Tot_Leads = $.extend(true, [], aLeadRows /*this.gModelRef.getData().LeadList.rows*/);
                     }
