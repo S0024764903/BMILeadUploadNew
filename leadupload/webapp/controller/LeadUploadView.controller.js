@@ -1068,7 +1068,7 @@ sap.ui.define([
                 mParameters.success = function (result, xhr, data) {
                     var sToken = data.getResponseHeader("x-csrf-token");
                     if (bCallFrom) {
-                        var aLeadRows = this.eliminateUnwantedFields($.extend(true, [], c), false);
+                        var aLeadRows = this.eliminateUnwantedFields($.extend(true, [], this.gModelRef.getData().LeadList.rows), false);
                         this._doExportLeads(aLeadRows, sToken);
                     } else {
                         var aLeadRows = this.eliminateUnwantedFields($.extend(true, [], this.gModelRef.getData().LeadList.rows), true);
