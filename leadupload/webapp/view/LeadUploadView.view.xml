@@ -63,14 +63,12 @@
                             <t:Column id="idQualification_Level_c1" sortProperty="Qualification_Level" filterProperty="Qualification_Level" resizable="true" width='10rem'>
                                 <t:multiLabels>
                                     <Label id="id_LH3" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
-                                    <Label id="idQualification_Level_l1" textAlign="Center" text="{i18n>Qualification_Level}" required="true" />
+                                    <Label id="idQualification_Level_l1" textAlign="Center" text="{i18n>Qualification_Level}" />
                                 </t:multiLabels>
                                 <t:template>
                                     <Select
                                         id="idQualification_Level_s1"
                                         change="handleChangeSelect"
-                                        valueState='{gModelRef>Fld_VS_Qualification_Level}'
-                                        valueStateText='{gModelRef>Fld_VST_Qualification_Level}'
                                         forceSelection="false"
                                         width="100%"
                                         selectedKey="{
@@ -142,16 +140,15 @@
                             <t:Column id="idCategory_c1" sortProperty="Category" filterProperty="Category" resizable="true" width='11rem'>
                                 <t:multiLabels>
                                     <Label id="id_LH6" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
-                                    <Label id="idCategory_l1" textAlign="Center" text="{i18n>Category}" required="true" />
+                                    <Label id="idCategory_l1" textAlign="Center" text="{i18n>Category}" />
                                 </t:multiLabels>
                                 <t:template>
                                     <Select
                                         id="idCategory_s1"
                                         width="100%"
                                         change="handleChangeSelect"
-                                        valueState='{gModelRef>Fld_VS_Category}'
-                                        valueStateText='{gModelRef>Fld_VST_Category}'
                                         selectedKey="{gModelRef>Category}"
+                                        forceSelection="false"
                                         items="{
                                             templateShareable:false,
                                             path: 'gModelRef>/DataTable/Category',
@@ -229,14 +226,12 @@
                             <t:Column id="idAccount_Information_Country_c1" sortProperty="Account_Information_Country" filterProperty="Account_Information_Country" resizable="true" width='10rem'>
                                 <t:multiLabels>
                                     <Label id="id_AI6" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
-                                    <Label id="idAccount_Information_Country_l1" textAlign="Center" text="{i18n>Account_Information_Country}" required="true" />
+                                    <Label id="idAccount_Information_Country_l1" textAlign="Center" text="{i18n>Account_Information_Country}" />
                                 </t:multiLabels>
                                 <t:template>
                                     <Select
                                         id="idAccount_Information_Country_s1"
                                         change="handleChangeSelect"
-                                        valueState='{gModelRef>Fld_VS_Account_Information_Country}'
-                                        valueStateText='{gModelRef>Fld_VST_Account_Information_Country}'
                                         forceSelection="false"
                                         width="100%"
                                         selectedKey="{gModelRef>Account_Information_Country}"
@@ -299,7 +294,7 @@
                             <t:Column id="idContact_Last_Name_c1" sortProperty="Contact_Last_Name" filterProperty="Contact_Last_Name" resizable="true" width='15rem'>
                                 <t:multiLabels>
                                     <Label id="id_CI4" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
-                                    <Label id="idContact_Last_Name_l1" textAlign="Center" text="{i18n>Contact_Last_Name}" required="true" />
+                                    <Label id="idContact_Last_Name_l1" textAlign="Center" text="{i18n>Contact_Last_Name}" />
                                 </t:multiLabels>
                                 <t:template>
                                     <Input
@@ -307,8 +302,6 @@
                                         value='{gModelRef>Contact_Last_Name}'
                                         change='handleChangeInput_Contact_Last_Name'
                                         tooltip='{gModelRef>Contact_Last_Name}'
-                                        valueState='{gModelRef>Fld_VS_Contact_Last_Name}'
-                                        valueStateText='{gModelRef>Fld_VST_Contact_Last_Name}'
                                         editable='{gModelRef>/editable}'
                                     />
                                 </t:template>
@@ -370,14 +363,12 @@
                             <t:Column id="idIndividual_Customer_Information_Country_c1" sortProperty="Individual_Customer_Information_Country" filterProperty="Individual_Customer_Information_Country" resizable="true" width='10rem'>
                                 <t:multiLabels>
                                     <Label id="id_CI8" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
-                                    <Label id="idIndividual_Customer_Information_Country_l1" textAlign="Center" wrapping="true" text="{i18n>Individual_Customer_Information_Country}" required="true" />
+                                    <Label id="idIndividual_Customer_Information_Country_l1" textAlign="Center" wrapping="true" text="{i18n>Individual_Customer_Information_Country}" />
                                 </t:multiLabels>
                                 <t:template>
                                     <Select
                                         id="idIndividual_Customer_Information_Country_s1"
                                         change="handleChangeSelect"
-                                        valueState='{gModelRef>Fld_VS_Individual_Customer_Information_Country}'
-                                        valueStateText='{gModelRef>Fld_VST_Individual_Customer_Information_Country}'
                                         forceSelection="false"
                                         width="100%"
                                         selectedKey="{gModelRef>Individual_Customer_Information_Country}"

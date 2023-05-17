@@ -107,9 +107,6 @@ sap.ui.define([
                     Status: [
                         { code: "01", name: this.getLanguageText("Open") },
                         { code: "02", name: this.getLanguageText("Qualified") },
-                        { code: "03", name: this.getLanguageText("Converted") },
-                        { code: "04", name: this.getLanguageText("Accepted") },
-                        { code: "05", name: this.getLanguageText("Declined") },
                         { code: "Z0", name: this.getLanguageText("Contacted") },
                     ],
                     Source: [
@@ -156,11 +153,21 @@ sap.ui.define([
                         { code: "Z35", name: this.getLanguageText("SalesProfessional") },
                         { code: "Z36", name: this.getLanguageText("SalesHouseFactory") },
                         { code: "Z37", name: this.getLanguageText("SalesSocialMedia") },
-                        { code: "Z38", name: this.getLanguageText("SalesHomeOwner") },
+                        { code: "Z38", name: this.getLanguageText("SalesHomeOwner") }, 
+                        { code: "Z39", name: this.getLanguageText("SalesRep") },
+                        { code: "Z40", name: this.getLanguageText("ExternalDocumedia") },
+                        { code: "Z41", name: this.getLanguageText("Documedia") },
+                        { code: "Z42", name: this.getLanguageText("LMVIPNetzwerk") },
+                        { code: "Z43", name: this.getLanguageText("LMGlobalData") },
+                        { code: "Z44", name: this.getLanguageText("LMibau") },
+                        { code: "Z45", name: this.getLanguageText("LMWebseite") },
+                        { code: "Z46", name: this.getLanguageText("LMAktion") },
+                        { code: "Z47", name: this.getLanguageText("Marketing") }
                     ],
                     Category: [
-                        { code: "Z030", name: this.getLanguageText("Residential") },
-                        { code: "Z040", name: this.getLanguageText("NonResidential") }
+                        { code: "Z010", name: this.getLanguageText("PitchedRoof") },
+                        { code: "Z020", name: this.getLanguageText("FlatRoof") },
+                        { code: "Z370", name: this.getLanguageText("NonRoof") }
                     ],
                     Country: [
                         { code: "DE", name: this.getLanguageText("Germany") },
@@ -172,7 +179,8 @@ sap.ui.define([
                         { code: "FI", name: this.getLanguageText("Finland") },
                         { code: "AT", name: this.getLanguageText("Austria") },
                         { code: "CH", name: this.getLanguageText("Switzerland") },
-                        { code: "FR", name: this.getLanguageText("France") }
+                        { code: "FR", name: this.getLanguageText("France") },
+                        { code: "IE", name: this.getLanguageText("Ireland") }
                     ],
                     Contact_Information_Title: [
                         { code: "0001", name: this.getLanguageText("Ms") },
@@ -270,7 +278,9 @@ sap.ui.define([
                     ],
                     Segment_SpecialisationTarget_Group: [
                         { code: "Z10", name: this.getLanguageText("ResidentialConstruction") },
-                        { code: "Z20", name: this.getLanguageText("Nonresidentialconstruction") }
+                        { code: "Z20", name: this.getLanguageText("Nonresidentialconstruction") },
+                        { code: "Z30", name: this.getLanguageText("Infrastructures") },
+                        { code: "Z40", name: this.getLanguageText("MineandHydraulics") }
                     ],
                     Segment_Specialization_2: [
                         { code: "Z01", name: this.getLanguageText("Z01") },
@@ -522,10 +532,8 @@ sap.ui.define([
                     if (iIndex == 0) {
                         var colSetting = { field: aXlData[i], required: false, width: "100%", collection: false };
                         if (colSetting.field == "External_Key" || colSetting.field == "Name" ||
-                            colSetting.field == "Qualification_Level" || colSetting.field == "Status" ||
-                            colSetting.field == "Source" || colSetting.field == "Category" ||
-                            colSetting.field == "Owner_Party_ID" || colSetting.field == "Account_Information_Country" ||
-                            colSetting.field == "Contact_Last_Name" || colSetting.field == "Individual_Customer_Information_Country" ||
+                            colSetting.field == "Status" ||
+                            colSetting.field == "Source" || colSetting.field == "Owner_Party_ID" ||
                             colSetting.field == "Gross_Roof_AreaUnitCode" || 
                             colSetting.field == "Building_Cost_Currency" )
                             colSetting.required = true;
@@ -719,23 +727,22 @@ sap.ui.define([
                 this.gModelRef.getData().LeadList.leadCount.missingMandatoryFields = this.DataCategory.Tot_Leads.filter(function (itm) {
                     var oFields = {};
                     if (itm.Gross_Roof_Area === 0 || itm.Gross_Roof_Area === undefined) {
-                        oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Qualification_Level || itm.Err_ND_Status || itm.Err_ND_Source ||
-                            itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country);
+                        oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Status || itm.Err_ND_Source ||
+                            itm.Err_ND_Owner_Party_ID );
                     } else if (!(itm.Gross_Roof_Area === 0 || itm.Gross_Roof_Area === undefined)) {
-                        oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Qualification_Level || itm.Err_ND_Status || itm.Err_ND_Source ||
-                            itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country ||
-                            itm.Err_ND_Gross_Roof_AreaUnitCode);
+                        oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Status || itm.Err_ND_Source ||
+                            itm.Err_ND_Owner_Party_ID || itm.Err_ND_Gross_Roof_AreaUnitCode);
                     } else if (itm.Gross_Roof_Area === 0 || itm.Gross_Roof_Area === undefined) {
-                        oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Qualification_Level || itm.Err_ND_Status || itm.Err_ND_Source ||
-                            itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country);
+                        oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Status || itm.Err_ND_Source ||
+                            itm.Err_ND_Owner_Party_ID);
                     } else {
-                        oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Qualification_Level || itm.Err_ND_Status || itm.Err_ND_Source ||
-                            itm.Err_ND_Category || itm.Err_ND_Owner_Party_ID || itm.Err_ND_Account_Information_Country || itm.Err_ND_Contact_Last_Name || itm.Err_ND_Individual_Customer_Information_Country || itm.Err_ND_Gross_Roof_AreaUnitCode);
+                        oFields = (itm.Err_ND_External_Key || itm.Err_ND_Name || itm.Err_ND_Status || itm.Err_ND_Source ||
+                            itm.Err_ND_Owner_Party_ID || itm.Err_ND_Gross_Roof_AreaUnitCode);
                     }
                     return oFields;
                 }).length;
-                this.gModelRef.getData().LeadList.leadCount.Err_ND_Qualification_Level = this.DataCategory.Tot_Leads.filter(function (itm) { return (itm.Err_ND_Qualification_Level); }).length;
-                this.gModelRef.getData().LeadList.leadCount.Err_INV_Qualification_Level = this.DataCategory.Tot_Leads.filter(function (itm) { return (itm.Err_INV_Qualification_Level); }).length;
+                // this.gModelRef.getData().LeadList.leadCount.Err_ND_Qualification_Level = this.DataCategory.Tot_Leads.filter(function (itm) { return (itm.Err_ND_Qualification_Level); }).length;
+                // this.gModelRef.getData().LeadList.leadCount.Err_INV_Qualification_Level = this.DataCategory.Tot_Leads.filter(function (itm) { return (itm.Err_INV_Qualification_Level); }).length;
                 this.gModelRef.getData().LeadList.linkVisible = true;
                 this.gModelRef.refresh();
                 this.renderControlLinks();
@@ -927,8 +934,8 @@ sap.ui.define([
                         oFilter.push(new sap.ui.model.Filter("Category", sap.ui.model.FilterOperator.EQ, ""));
                         oFilter.push(new sap.ui.model.Filter("Owner_Party_ID", sap.ui.model.FilterOperator.EQ, ""));
                         oFilter.push(new sap.ui.model.Filter("Account_Information_Country", sap.ui.model.FilterOperator.EQ, ""));
-                        oFilter.push(new sap.ui.model.Filter("Contact_Last_Name", sap.ui.model.FilterOperator.EQ, ""));
-                        oFilter.push(new sap.ui.model.Filter("Individual_Customer_Information_Country", sap.ui.model.FilterOperator.EQ, ""));
+                        // oFilter.push(new sap.ui.model.Filter("Contact_Last_Name", sap.ui.model.FilterOperator.EQ, ""));
+                        // oFilter.push(new sap.ui.model.Filter("Individual_Customer_Information_Country", sap.ui.model.FilterOperator.EQ, ""));
                         // oFilter.push(new sap.ui.model.Filter("Expected_Revenue_Amount_Currency", sap.ui.model.FilterOperator.EQ, ""));
                         oFilter.push(new sap.ui.model.Filter("Building_Cost_Currency", sap.ui.model.FilterOperator.EQ, ""));
                         oFilter.push(new sap.ui.model.Filter("Gross_Roof_AreaUnitCode", sap.ui.model.FilterOperator.EQ, ""));
@@ -943,9 +950,9 @@ sap.ui.define([
                     case constants.FILTER_BY.TotalErrorLeads:
                         aFilter.push(new sap.ui.model.Filter("Row_State", sap.ui.model.FilterOperator.EQ, "Error"));
                         break;
-                    case constants.FILTER_BY.MissingQualLevel:
-                        aFilter.push(new sap.ui.model.Filter("Err_ND_Qualification_Level", sap.ui.model.FilterOperator.EQ, true));
-                        break;
+                    // case constants.FILTER_BY.MissingQualLevel:
+                    //     aFilter.push(new sap.ui.model.Filter("Err_ND_Qualification_Level", sap.ui.model.FilterOperator.EQ, true));
+                    //     break;
                     case constants.FILTER_BY.InvalidQualLevel:
                         aFilter.push(new sap.ui.model.Filter("Err_INV_Qualification_Level", sap.ui.model.FilterOperator.EQ, true));
                         break;
@@ -1096,7 +1103,7 @@ sap.ui.define([
                     // "X-CSRF-Token": constants.HTTP_METHOD.FETCH,
                     "UserID": this.getUserID()
                 };
-                mParameters.url = `/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.IMPORT_FILES}/${this._getEndPoint()}?UserID='${this.getUserID()}'`;
+                mParameters.url = `/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.IMPORT_FILES}${this._getEndPoint()}?UserID='${this.getUserID()}'`;
                 sap.ui.core.BusyIndicator.show();
                 mParameters.success = function (result, xhr, data) {
                     sap.ui.core.BusyIndicator.hide();
@@ -1134,7 +1141,7 @@ sap.ui.define([
                     "UserID": this.getUserID(),
                     "FileName": sFileName
                 };
-                mParameters.url = `/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.IMPORT_LEADS}/${this._getEndPoint()}`;
+                mParameters.url = `/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.IMPORT_LEADS}${this._getEndPoint()}`;
                 sap.ui.core.BusyIndicator.show();
                 mParameters.success = function (result, xhr, data) {
                     var oResponseText = data.responseText;
@@ -1156,7 +1163,7 @@ sap.ui.define([
             handleOnExport: function (oEvent) {
                 this.gModelRef.getData().LeadList.FileName = this.getFileName(this.getView().byId("idFileUploader").getValue());
                 this.gModelRef.refresh();
-                this._doFetchToken(`/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.EXPORT_LEADS}/${this._getEndPoint()}`, true);
+                this._doFetchToken(`/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.EXPORT_LEADS}${this._getEndPoint()}`, true);
             },
 
             async _doExportLeads(aLeadRows, sToken) {
@@ -1164,7 +1171,7 @@ sap.ui.define([
                 var oI18Model = this.getOwnerComponent().getModel("i18n").getResourceBundle();
                 var that = this;
                 mParameters.method = constants.HTTP_METHOD.POST;
-                mParameters.url = `/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.EXPORT_LEADS}/${this._getEndPoint()}`;
+                mParameters.url = `/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.EXPORT_LEADS}${this._getEndPoint()}`;
                 mParameters.data = JSON.stringify(aLeadRows);
                 mParameters.headers = {
                     "Content-Type": "application/json",
@@ -1186,7 +1193,7 @@ sap.ui.define([
 
             handleOnUploadToSalesCloud: function (oEvent) {
                 
-                this._doFetchToken(`/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.UPLOAD_LEADS}/${this._getEndPoint()}`, false);
+                this._doFetchToken(`/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.UPLOAD_LEADS}${this._getEndPoint()}`, false);
                 // var aLeadRows = this.eliminateUnwantedFields($.extend(true, [], this.gModelRef.getData().LeadList.rows), true); 
                 // var sToken = "";
                 // this._doUploadSalesLeads(aLeadRows, sToken);
@@ -1199,7 +1206,7 @@ sap.ui.define([
                 this.gModelRef.getData().LeadList.FileName = this.getFileName(this.getView().byId("idFileUploader").getValue());
                 var that = this;
                 mParameters.method = constants.HTTP_METHOD.POST;
-                mParameters.url = `/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.UPLOAD_LEADS}/${this._getEndPoint()}`;
+                mParameters.url = `/${constants.APP_ROUTER}${constants.APP_ID}${constants.VERSION}/${this._getDestinationName()}${constants.CPI_SERVICES.UPLOAD_LEADS}${this._getEndPoint()}`;
                 mParameters.timeout = 5000000;
                 mParameters.data = JSON.stringify(aLeadRows);
                 mParameters.headers = {
@@ -1407,6 +1414,8 @@ sap.ui.define([
                     sDestination = constants.DESTINATION_NAME_RT400;
                 }else if(sUrl.indexOf("C4CSystem=RT410") > -1){
                     sDestination = constants.DESTINATION_NAME_RT410;
+                }else if(sUrl.indexOf("C4CSystem=RT420") > -1){
+                    sDestination = constants.DESTINATION_NAME_RT420;
                 }else if(sUrl.indexOf("C4CSystem=BQ400") > -1){
                     sDestination = constants.DESTINATION_NAME_BQ400;
                 }else if(sUrl.indexOf("C4CSystem=TT400") > -1){
@@ -1422,8 +1431,10 @@ sap.ui.define([
                 var sDestination = "";
                 if(sUrl.indexOf("RT410") > -1){
                     sDestination = constants.END_POINT_RTC410;
-                }else if(sUrl.indexOf("RT410") > -1){
-                    sDestination = constants.END_POINT_RTC400;
+                }else if(sUrl.indexOf("RT400") > -1){
+                    sDestination = "";
+                }else if(sUrl.indexOf("RT420") > -1){
+                    sDestination = constants.END_POINT_RTC420;
                 }else if(sUrl.indexOf("BQ400") > -1){
                     sDestination = constants.END_POINT_BQC400;  
                 }else {

@@ -26,9 +26,23 @@
     {
       "authenticationType": "xsuaa",
       "csrfProtection": false,
+      "source": "^/CPI_BMI_AZURE_SERVICE_RT420/(.*)$",
+      "target": "$1",
+      "destination": "CPI_BMI_AZURE_SERVICE_RT420"
+    },
+    {
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
       "source": "^/CPI_BMI_AZURE_SERVICE_BQC400/(.*)$",
       "target": "$1",
       "destination": "CPI_BMI_AZURE_SERVICE_BQC400"
+    },
+    {
+      "authenticationType": "xsuaa",
+      "csrfProtection": false,
+      "source": "^/CPI_BMI_AZURE_SERVICE/(.*)$",
+      "target": "$1",
+      "destination": "CPI_BMI_AZURE_SERVICE"
     },
     {
       "source": "^/resources/(.*)$",

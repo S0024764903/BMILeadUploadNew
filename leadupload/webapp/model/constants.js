@@ -18,9 +18,11 @@ sap.ui.define([], function () {
         DESTINATION_NAME_RT400: "CPI_BMI_AZURE_SERVICE_RT400",
         DESTINATION_NAME_RT410: "CPI_BMI_AZURE_SERVICE_RT410",
         DESTINATION_NAME_BQ400: "CPI_BMI_AZURE_SERVICE_BQC400",
-        END_POINT_RTC410: "RTC410",
-        END_POINT_BQC400: "BQC400",
-        END_POINT_RTC400: "RTC400",
+        DESTINATION_NAME_RT420: "CPI_BMI_AZURE_SERVICE_RT420",
+        END_POINT_RTC410: "/RTC410",
+        END_POINT_BQC400: "/BQC400",
+        END_POINT_RTC400: "/RTC400",
+        END_POINT_RTC420: "/RT4420",
         DESTINATION_PROXY: "CPI_PROXY_BMI_API_DEV",
         CPI_SERVICES: {
             EXPORT_LEADS: "/http/Fiori/Azure/ExportLeads",
@@ -93,28 +95,27 @@ sap.ui.define([], function () {
         MANDATORY_FIELDS: {
             External_Key: "External_Key",
             Name: "Name",
-            Qualification_Level: "Qualification_Level",
+            // Qualification_Level: "Qualification_Level",
             Status: "Status",
             Source: "Source",
-            Category: "Category",
+            // Category: "Category",
             Owner_Party_ID: "Owner_Party_ID",
             Company: "Company",
-            Account_Information_Country: "Account_Information_Country",
-            Contact_Last_Name: "Contact_Last_Name",
-            Individual_Customer_Information_Country: "Individual_Customer_Information_Country"
+            // Account_Information_Country: "Account_Information_Country",
+            // Contact_Last_Name: "Contact_Last_Name",
+            // Individual_Customer_Information_Country: "Individual_Customer_Information_Country"
         },
         PARTIAL_MANDATORY_FIELDS: {
-            // Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
             Building_Cost_Currency: "Building_Cost_Currency"
         },
         COLLECTION_FIELDS: {
-            Qualification_Level: "Qualification_Level",
+            // Qualification_Level: "Qualification_Level",
             Status: "Status",
-            Source: "Source",
-            Category: "Category",
-            Account_Information_Country: "Account_Information_Country",
-            Individual_Customer_Information_Country: "Individual_Customer_Information_Country"
+            Source: "Source"
+            // Category: "Category",
+            // Account_Information_Country: "Account_Information_Country",
+            // Individual_Customer_Information_Country: "Individual_Customer_Information_Country"
         },
         DROPDOWN_FIELDS: {
             Qualification_Level: "Qualification_Level",
@@ -124,7 +125,6 @@ sap.ui.define([], function () {
             Account_Information_Country: "Account_Information_Country",
             Contact_Information_Title: "Contact_Information_Title",
             Individual_Customer_Information_Country: "Individual_Customer_Information_Country",
-            // Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
             Segment_SpecialisationTarget_Group: "Segment_SpecialisationTarget_Group",
             Segment_Specialization_2: "Segment_Specialization_2",
