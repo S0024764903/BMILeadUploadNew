@@ -2,16 +2,17 @@ sap.ui.define([
     //"sap/ui/core/mvc/Controller"
     "com/sap/bmi/zc4cui5leadupload/controller/BaseController",
     "com/sap/bmi/zc4cui5leadupload/model/constants",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "com/sap/bmi/zc4cui5leadupload/model/Formatter"
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (BaseController, constants, MessageBox) {
+    function (BaseController, constants, MessageBox, formatter) {
         "use strict";
 
         return BaseController.extend("com.sap.bmi.zc4cui5leadupload.controller.LeadUploadView", {
-
+            formatter: formatter,
             ArrColumns: [],
             DataCategory: {
                 Tot_Leads: [],
@@ -276,12 +277,12 @@ sap.ui.define([
                         { code: "Z40", name: this.getLanguageText("Z40") },
                         { code: "Z50", name: this.getLanguageText("Z50") },
                     ],
-                    Segment_SpecialisationTarget_Group: [
-                        { code: "Z10", name: this.getLanguageText("ResidentialConstruction") },
-                        { code: "Z20", name: this.getLanguageText("Nonresidentialconstruction") },
-                        { code: "Z30", name: this.getLanguageText("Infrastructures") },
-                        { code: "Z40", name: this.getLanguageText("MineandHydraulics") }
-                    ],
+                    // Segment_SpecialisationTarget_Group: [
+                    //     { code: "Z10", name: this.getLanguageText("ResidentialConstruction") },
+                    //     { code: "Z20", name: this.getLanguageText("Nonresidentialconstruction") },
+                    //     { code: "Z30", name: this.getLanguageText("Infrastructures") },
+                    //     { code: "Z40", name: this.getLanguageText("MineandHydraulics") }
+                    // ],
                     Segment_Specialization_2: [
                         { code: "Z01", name: this.getLanguageText("Z01") },
                         { code: "Z02", name: this.getLanguageText("Z02") },
@@ -540,13 +541,12 @@ sap.ui.define([
                         if (colSetting.field == "Qualification_Level" || colSetting.field == "Status" ||
                             colSetting.field == "Source" || colSetting.field == "Category" || colSetting.field == "Account_Information_Country" ||
                             colSetting.field == "Individual_Customer_Information_Country" || colSetting.field == "Gross_Roof_AreaUnitCode" ||
-                            colSetting.field == "Segment_SpecialisationTarget_Group" ||
                             colSetting.field == "Segment_Specialization_2" || colSetting.field == "Contact_Information_Title" || colSetting.field == "Specialisation_FR_PR" || 
                             colSetting.field == "Building_Cost_Currency")
                             colSetting.collection = true;
                         if (colSetting.field == "External_Key" || colSetting.field == "Account_Information_Postal_Code" || colSetting.field == "Contact_Information_Phone" ||
                             colSetting.field == "LM_BR_Reference_Number" ||
-                            colSetting.field == "Gross_Roof_Area" || colSetting.field == "Gross_Roof_AreaUnitCode" || colSetting.field == "Segment_SpecialisationTarget_Group" ||
+                            colSetting.field == "Gross_Roof_Area" || colSetting.field == "Gross_Roof_AreaUnitCode" ||
                             colSetting.field == "Segment_Specialization_2" || colSetting.field == "Specialisation_FR_PR" ||
                             colSetting.field == "Start_of_Construction" || colSetting.field == "End_of_Construction" || 
                             colSetting.field == "Building_Cost" || colSetting.field == "Building_Cost_Currency")
@@ -558,7 +558,7 @@ sap.ui.define([
                         else if (colSetting.field == "Qualification_Level" || colSetting.field == "Status" || colSetting.field == "Source" ||
                             colSetting.field == "Category" || colSetting.field == "Owner_Party_ID")
                             colSetting.width = "10rem";
-                        else if (colSetting.field == "Company" || colSetting.field == "Account_Information_Street" || colSetting.field == "Customer_Information_City" ||
+                        else if (colSetting.field == "Company" || colSetting.field == "Customer_Information_City" ||
                             colSetting.field == "Account_Information_Country" || colSetting.field == "Contact_Information_Title" || colSetting.field == "Contact_First_Name" ||
                             colSetting.field == "Contact_Middle_Name" || colSetting.field == "Contact_Last_Name" || colSetting.field == "Individual_Customer_Information_Country" ||
                             colSetting.field == "Address_1" || colSetting.field == "Address_2")
@@ -578,13 +578,13 @@ sap.ui.define([
                 if (iIndex > 0) {
                     if (!this.hasValue(dataObj.External_Key) && !this.hasValue(dataObj.Name) && !this.hasValue(dataObj.Qualification_Level) &&
                         !this.hasValue(dataObj.Status) && !this.hasValue(dataObj.Source) && !this.hasValue(dataObj.Category) && !this.hasValue(dataObj.Owner_Party_ID) &&
-                        !this.hasValue(dataObj.Company) && !this.hasValue(dataObj.Account_Information_Street) && !this.hasValue(dataObj.Customer_Information_City) &&
+                        !this.hasValue(dataObj.Company) && !this.hasValue(dataObj.Customer_Information_City) &&
                         !this.hasValue(dataObj.Address_1) && !this.hasValue(dataObj.Address_2) && !this.hasValue(dataObj.Contact_Information_Mobile) &&
                         !this.hasValue(dataObj.Account_Information_Postal_Code) && !this.hasValue(dataObj.Account_Information_Country) && !this.hasValue(dataObj.Contact_Information_Title) &&
                         !this.hasValue(dataObj.Contact_First_Name) && !this.hasValue(dataObj.Contact_Middle_Name) && !this.hasValue(dataObj.Contact_Last_Name) &&
                         !this.hasValue(dataObj.Contact_Information_Phone) && !this.hasValue(dataObj.Contact_Information_Email) && !this.hasValue(dataObj.Individual_Customer_Information_Country) &&
                         !this.hasValue(dataObj.LM_BR_Reference_Number) &&
-                        !this.hasValue(dataObj.Gross_Roof_Area) && !this.hasValue(dataObj.Gross_Roof_AreaUnitCode) && !this.hasValue(dataObj.Segment_SpecialisationTarget_Group) &&
+                        !this.hasValue(dataObj.Gross_Roof_Area) && !this.hasValue(dataObj.Gross_Roof_AreaUnitCode) &&
                         !this.hasValue(dataObj.Segment_Specialization_2) && !this.hasValue(dataObj.Notes) && !this.hasValue(dataObj.Start_of_Construction) && !this.hasValue(dataObj.End_of_Construction) &&
                         !this.hasValue(dataObj.Building_Cost) && !this.hasValue(dataObj.Building_Cost_Currency) && !this.hasValue(dataObj.Reference_1) && !this.hasValue(dataObj.Probability) && !this.hasValue(dataObj.Specialisation_FR_PR)) {
 
@@ -1149,6 +1149,7 @@ sap.ui.define([
                         that.showSuccessMessageBox(oI18Model.getText("titleSuccess"), oI18Model.getText("SuccessMessageAfterImport"));
                         var aRows = JSON.parse(oResponseText);
                         that.gModelRef.getData().LeadList.rows = aRows;
+                        that.gModelRef.getData().LeadList.RunID = aRows[0].RunID;
                         that.gModelRef.refresh();
                         sap.ui.core.BusyIndicator.hide();
                     }
@@ -1420,6 +1421,12 @@ sap.ui.define([
                     sDestination = constants.DESTINATION_NAME_BQ400;
                 }else if(sUrl.indexOf("C4CSystem=TT400") > -1){
                     sDestination = constants.DESTINATION_NAME_TT400;
+                }else if(sUrl.indexOf("C4CSystem=BD310") > -1){
+                    sDestination = constants.DESTINATION_NAME_BD310;
+                }else if(sUrl.indexOf("C4CSystem=BT410") > -1){
+                    sDestination = constants.DESTINATION_NAME_BT410;
+                }else if(sUrl.indexOf("C4CSystem=BU400") > -1){
+                    sDestination = constants.DESTINATION_NAME_BU400;
                 }else{
                     sDestination = constants.DESTINATION_NAME;
                 }
@@ -1437,6 +1444,12 @@ sap.ui.define([
                     sDestination = constants.END_POINT_RTC420;
                 }else if(sUrl.indexOf("BQ400") > -1){
                     sDestination = constants.END_POINT_BQC400;  
+                }else if(sUrl.indexOf("BD310") > -1){
+                    sDestination = "";  
+                }else if(sUrl.indexOf("BT410") > -1){
+                    sDestination = "";  
+                }else if(sUrl.indexOf("BU400") > -1){
+                    sDestination = "";  
                 }else {
                     sDestination = "";
                 }

@@ -169,9 +169,9 @@
                                     <Input id="idOwner_Party_ID_i1" value='{gModelRef>Owner_Party_ID}' change='handleChangeInput_Owner_Party_ID' tooltip='{gModelRef>Owner_Party_ID}' valueState='{gModelRef>Fld_VS_Owner_Party_ID}' valueStateText='{gModelRef>Fld_VST_Owner_Party_ID}' editable='{gModelRef>/editable}'/>
                                 </t:template>
                             </t:Column>
-                            <t:Column headerSpan="5" id="idCompany_c1" sortProperty="Company" filterProperty="Company" resizable="true" width='15rem'>
+                            <t:Column headerSpan="6" id="idCompany_c1" sortProperty="Company" filterProperty="Company" resizable="true" width='15rem'>
                                 <t:multiLabels>
-                                    <Label id="id_LH8" textAlign="Center" width="100%" text="{i18n>LeadHeader}" />
+                                    <Label id="id_LH8" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
                                     <Label id="idCompany_l1" textAlign="Center" text="{i18n>Company}" required="true" />
                                 </t:multiLabels>
                                 <t:template>
@@ -196,7 +196,7 @@
                                     <Input id="idAccount_Information_Address_2_i1" value='{gModelRef>Address_2}' tooltip='{gModelRef>Address_2}' editable='{gModelRef>/editable}'/>
                                 </t:template>
                             </t:Column>
-                            <t:Column id="idAccount_Information_Street_c1" sortProperty="Account_Information_Street" filterProperty="Account_Information_Street" resizable="true" width='15rem'>
+                            <!-- <t:Column id="idAccount_Information_Street_c1" sortProperty="Account_Information_Street" filterProperty="Account_Information_Street" resizable="true" width='15rem'>
                                 <t:multiLabels>
                                     <Label id="id_AI3" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
                                     <Label id="idAccount_Information_Street_l1" textAlign="Center" text="{i18n>Account_Information_Street}" required="false" />
@@ -204,7 +204,7 @@
                                 <t:template>
                                     <Input id="idAccount_Information_Street_i1" value='{gModelRef>Account_Information_Street}' change='handleChangeInput_Account_Information_Street' tooltip='{gModelRef>Account_Information_Street}' editable='{gModelRef>/editable}'/>
                                 </t:template>
-                            </t:Column>
+                            </t:Column> -->
                             <t:Column id="idCustomer_Information_City_c1" sortProperty="Customer_Information_City" filterProperty="Customer_Information_City" resizable="true" width='15rem'>
                                 <t:multiLabels>
                                     <Label id="id_AI4" textAlign="Center" width="100%" text="{i18n>AccountInformation}" />
@@ -245,7 +245,7 @@
                                     </Select>
                                 </t:template>
                             </t:Column>
-                            <t:Column headerSpan="7" id="idContact_Information_Title_c1" sortProperty="Contact_Information_Title" filterProperty="Contact_Information_Title" resizable="true" width='8rem'>
+                            <t:Column headerSpan="8" id="idContact_Information_Title_c1" sortProperty="Contact_Information_Title" filterProperty="Contact_Information_Title" resizable="true" width='8rem'>
                                 <t:multiLabels>
                                     <Label id="id_CI1" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
                                     <Label id="idContact_Information_Title_l1" textAlign="Center" text="{i18n>Contact_Information_Title}" required="false" />
@@ -423,7 +423,7 @@
                                     </Select>
                                 </t:template>
                             </t:Column> -->
-                            <t:Column id="idLM_BR_Reference_Number_c1" sortProperty="LM_BR_Reference_Number" filterProperty="LM_BR_Reference_Number" resizable="true" width='9rem'>
+                            <t:Column headerSpan="12" id="idLM_BR_Reference_Number_c1" sortProperty="LM_BR_Reference_Number" filterProperty="LM_BR_Reference_Number" resizable="true" width='9rem'>
                                 <t:multiLabels>
                                     <Label id="id_AF3" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
                                     <Label id="idLM_BR_Reference_Number_l1" textAlign="Center" wrapping="true" text="{i18n>LM_BR_Reference_Number}" required="false" />
@@ -465,7 +465,7 @@
                                     </Select>
                                 </t:template>
                             </t:Column>
-                            <t:Column id="idSegment_SpecialisationTarget_Group_c1" sortProperty="Segment_SpecialisationTarget_Group" filterProperty="Segment_SpecialisationTarget_Group" resizable="true" width='14rem'>
+                            <!-- <t:Column id="idSegment_SpecialisationTarget_Group_c1" sortProperty="Segment_SpecialisationTarget_Group" filterProperty="Segment_SpecialisationTarget_Group" resizable="true" width='14rem'>
                                 <t:multiLabels>
                                     <Label id="id_AF6" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
                                     <Label id="idSegment_SpecialisationTarget_Group_l1" textAlign="Center" wrapping="true" text="{i18n>Segment_SpecialisationTarget_Group}" required="false" />
@@ -489,7 +489,7 @@
                                         <core:Item id="idSegment_SpecialisationTarget_Group_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
                                     </Select>
                                 </t:template>
-                            </t:Column>
+                            </t:Column> -->
                             <t:Column id="idSegment_Specialization_2_c1" sortProperty="Segment_Specialization_2" filterProperty="Segment_Specialization_2" resizable="true" width='18rem'>
                                 <t:multiLabels>
                                     <Label id="id_AF7" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
