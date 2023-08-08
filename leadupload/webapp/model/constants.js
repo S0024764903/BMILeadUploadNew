@@ -22,6 +22,7 @@ sap.ui.define([], function () {
         DESTINATION_NAME_BD310: "CPI_BMI_AZURE_SERVICE_BD310",
         DESTINATION_NAME_BT410: "CPI_BMI_AZURE_SERVICE_BT410",
         DESTINATION_NAME_BU400: "CPI_BMI_AZURE_SERVICE_BU400",
+        DESTINATION_NAME_TT400: "CPI_BMI_AZURE_SERVICE_TT400",
         END_POINT_RTC410: "/RTC410",
         END_POINT_BQC400: "/BQC400",
         END_POINT_RTC400: "/RTC400",
@@ -29,6 +30,7 @@ sap.ui.define([], function () {
         END_POINT_BDC310: "",
         END_POINT_BTC410: "",
         END_POINT_BUC400: "",
+        END_POINT_TT400: "/TT4",
         DESTINATION_PROXY: "CPI_PROXY_BMI_API_DEV",
         CPI_SERVICES: {
             EXPORT_LEADS: "/http/Fiori/Azure/ExportLeads",
@@ -47,7 +49,6 @@ sap.ui.define([], function () {
             Company: "Company",
             Address_1: "Address_1",
             Address_2: "Address_2",
-            // Account_Information_Street: "Account_Information_Street",
             Customer_Information_City: "Customer_Information_City",
             Account_Information_Postal_Code: "Account_Information_Postal_Code",
             Account_Information_Country: "Account_Information_Country",
@@ -59,12 +60,9 @@ sap.ui.define([], function () {
             Contact_Information_Email: "Contact_Information_Email",
             Contact_Information_Mobile: "Contact_Information_Mobile",
             Individual_Customer_Information_Country: "Individual_Customer_Information_Country",
-            // Expected_Revenue_Value: "Expected_Revenue_Value",
-            // Expected_Revenue_Amount_Currency: "Expected_Revenue_Amount_Currency",
             LM_BR_Reference_Number: "LM_BR_Reference_Number",
             Gross_Roof_Area: "Gross_Roof_Area",
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
-            // Segment_SpecialisationTarget_Group: "Segment_SpecialisationTarget_Group",
             Segment_Specialization_2: "Segment_Specialization_2",
             Notes: "Notes",
             Start_of_Construction: "Start_of_Construction",
@@ -94,34 +92,24 @@ sap.ui.define([], function () {
             Contact_Information_Phone: "Contact_Information_Phone",
             Contact_Information_Email: "Contact_Information_Email",
             Contact_Information_Mobile: "Contact_Information_Mobile",
-            // Expected_Revenue_Value: "Expected_Revenue_Value",
             Building_Cost: "Building_Cost",
             Gross_Roof_Area: "Gross_Roof_Area"
         },
         MANDATORY_FIELDS: {
             External_Key: "External_Key",
             Name: "Name",
-            // Qualification_Level: "Qualification_Level",
             Status: "Status",
             Source: "Source",
-            // Category: "Category",
             Owner_Party_ID: "Owner_Party_ID",
-            Company: "Company",
-            // Account_Information_Country: "Account_Information_Country",
-            // Contact_Last_Name: "Contact_Last_Name",
-            // Individual_Customer_Information_Country: "Individual_Customer_Information_Country"
+            Company: "Company"
         },
         PARTIAL_MANDATORY_FIELDS: {
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
             Building_Cost_Currency: "Building_Cost_Currency"
         },
         COLLECTION_FIELDS: {
-            // Qualification_Level: "Qualification_Level",
             Status: "Status",
             Source: "Source"
-            // Category: "Category",
-            // Account_Information_Country: "Account_Information_Country",
-            // Individual_Customer_Information_Country: "Individual_Customer_Information_Country"
         },
         DROPDOWN_FIELDS: {
             Qualification_Level: "Qualification_Level",
@@ -135,7 +123,8 @@ sap.ui.define([], function () {
             Segment_SpecialisationTarget_Group: "Segment_SpecialisationTarget_Group",
             Segment_Specialization_2: "Segment_Specialization_2",
             Specialisation_FR_PR: "Specialisation_FR_PR",
-            Building_Cost_Currency: "Building_Cost_Currency"
+            Building_Cost_Currency: "Building_Cost_Currency",
+            Brand: "Brand"
         }
     };
 	return constants;

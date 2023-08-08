@@ -200,13 +200,21 @@ sap.ui.define([
                         { code: "Z014", name: this.getLanguageText("DhrMr") },
                         { code: "Z015", name: this.getLanguageText("MmeMs") },
                     ],
-                    // Expected_Revenue_Amount_Currency: [
-                    //     { code: "EUR", name: this.getLanguageText("Euro") },
-                    //     { code: "GBP", name: this.getLanguageText("PoundSterling") },
-                    //     { code: "NOK", name: this.getLanguageText("NorwegianKrone") },
-                    //     { code: "SEK", name: this.getLanguageText("SwedishKrona") },
-                    //     { code: "DKK", name: this.getLanguageText("DanishKrone") },
-                    // ],
+                    Brand: [
+                        { code: "ADK", name: this.getLanguageText("ADK") },
+                        { code: "BRS", name: this.getLanguageText("BRS") },
+                        { code: "ICO", name: this.getLanguageText("ICO") },
+                        { code: "KLO", name: this.getLanguageText("KLO") },
+                        { code: "MON", name: this.getLanguageText("MON") },
+                        { code: "NEC", name: this.getLanguageText("NEC") },
+                        { code: "ORM", name: this.getLanguageText("ORM") },
+                        { code: "RED", name: this.getLanguageText("RED") },
+                        { code: "SHI", name: this.getLanguageText("SHI") },
+                        { code: "SIP", name: this.getLanguageText("SIP") },
+                        { code: "VED", name: this.getLanguageText("VED") },
+                        { code: "WOL", name: this.getLanguageText("WOL") },
+                        { code: "ZAN", name: this.getLanguageText("ZAN") }
+                    ],
                     Building_Cost_Currency: [
                         { code: "EUR", name: this.getLanguageText("Euro") },
                         { code: "GBP", name: this.getLanguageText("PoundSterling") },
@@ -277,12 +285,6 @@ sap.ui.define([
                         { code: "Z40", name: this.getLanguageText("Z40") },
                         { code: "Z50", name: this.getLanguageText("Z50") },
                     ],
-                    // Segment_SpecialisationTarget_Group: [
-                    //     { code: "Z10", name: this.getLanguageText("ResidentialConstruction") },
-                    //     { code: "Z20", name: this.getLanguageText("Nonresidentialconstruction") },
-                    //     { code: "Z30", name: this.getLanguageText("Infrastructures") },
-                    //     { code: "Z40", name: this.getLanguageText("MineandHydraulics") }
-                    // ],
                     Segment_Specialization_2: [
                         { code: "Z01", name: this.getLanguageText("Z01") },
                         { code: "Z02", name: this.getLanguageText("Z02") },
@@ -1450,6 +1452,8 @@ sap.ui.define([
                     sDestination = "";  
                 }else if(sUrl.indexOf("BU400") > -1){
                     sDestination = "";  
+                }else if(sUrl.indexOf("TT400") > -1){
+                    sDestination = "constants.END_POINT_TT400";  
                 }else {
                     sDestination = "";
                 }
