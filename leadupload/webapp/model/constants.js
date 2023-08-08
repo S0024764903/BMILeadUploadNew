@@ -63,6 +63,7 @@ sap.ui.define([], function () {
             LM_BR_Reference_Number: "LM_BR_Reference_Number",
             Gross_Roof_Area: "Gross_Roof_Area",
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
+            Brand: "Brand",
             Segment_Specialization_2: "Segment_Specialization_2",
             Notes: "Notes",
             Start_of_Construction: "Start_of_Construction",
