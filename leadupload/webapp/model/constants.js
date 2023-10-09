@@ -59,7 +59,7 @@ sap.ui.define([], function () {
             Contact_Information_Phone: "Contact_Information_Phone",
             Contact_Information_Email: "Contact_Information_Email",
             Contact_Information_Mobile: "Contact_Information_Mobile",
-            Individual_Customer_Information_Country: "Individual_Customer_Information_Country",
+            // Individual_Customer_Information_Country: "Individual_Customer_Information_Country",
             LM_BR_Reference_Number: "LM_BR_Reference_Number",
             Gross_Roof_Area: "Gross_Roof_Area",
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
@@ -94,7 +94,9 @@ sap.ui.define([], function () {
             Contact_Information_Email: "Contact_Information_Email",
             Contact_Information_Mobile: "Contact_Information_Mobile",
             Building_Cost: "Building_Cost",
-            Gross_Roof_Area: "Gross_Roof_Area"
+            Gross_Roof_Area: "Gross_Roof_Area",
+            Start_of_Construction: "Start_of_Construction",
+            End_of_Construction: "End_of_Construction"
         },
         MANDATORY_FIELDS: {
             External_Key: "External_Key",
@@ -119,7 +121,7 @@ sap.ui.define([], function () {
             Category: "Category",
             Account_Information_Country: "Account_Information_Country",
             Contact_Information_Title: "Contact_Information_Title",
-            Individual_Customer_Information_Country: "Individual_Customer_Information_Country",
+            // Individual_Customer_Information_Country: "Individual_Customer_Information_Country",
             Gross_Roof_AreaUnitCode: "Gross_Roof_AreaUnitCode",
             Segment_SpecialisationTarget_Group: "Segment_SpecialisationTarget_Group",
             Segment_Specialization_2: "Segment_Specialization_2",

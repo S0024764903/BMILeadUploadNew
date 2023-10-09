@@ -245,7 +245,7 @@
                                     </Select>
                                 </t:template>
                             </t:Column>
-                            <t:Column headerSpan="8" id="idContact_Information_Title_c1" sortProperty="Contact_Information_Title" filterProperty="Contact_Information_Title" resizable="true" width='8rem'>
+                            <t:Column headerSpan="7" id="idContact_Information_Title_c1" sortProperty="Contact_Information_Title" filterProperty="Contact_Information_Title" resizable="true" width='8rem'>
                                 <t:multiLabels>
                                     <Label id="id_CI1" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
                                     <Label id="idContact_Information_Title_l1" textAlign="Center" text="{i18n>Contact_Information_Title}" required="false" />
@@ -360,7 +360,7 @@
                                     />
                                 </t:template>
                             </t:Column>
-                            <t:Column id="idIndividual_Customer_Information_Country_c1" sortProperty="Individual_Customer_Information_Country" filterProperty="Individual_Customer_Information_Country" resizable="true" width='10rem'>
+                            <!-- <t:Column id="idIndividual_Customer_Information_Country_c1" sortProperty="Individual_Customer_Information_Country" filterProperty="Individual_Customer_Information_Country" resizable="true" width='10rem'>
                                 <t:multiLabels>
                                     <Label id="id_CI8" textAlign="Center" width="100%" text="{i18n>ContactInformation}" />
                                     <Label id="idIndividual_Customer_Information_Country_l1" textAlign="Center" wrapping="true" text="{i18n>Individual_Customer_Information_Country}" />
@@ -381,7 +381,7 @@
                                         <core:Item id="idIndividual_Customer_Information_Country_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
                                     </Select>
                                 </t:template>
-                            </t:Column>
+                            </t:Column> -->
                             <!-- <t:Column headerSpan="8" id="idExpected_Revenue_Value_c1" sortProperty="Expected_Revenue_Value" filterProperty="Expected_Revenue_Value" resizable="true" width='7rem'>
                                 <t:multiLabels>
                                     <Label id="id_AF1" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
@@ -515,6 +515,33 @@
                                     </Select>
                                 </t:template>
                             </t:Column>
+                            <t:Column id="idBrand_c1" sortProperty="Brand" filterProperty="Brand" resizable="true" width='8rem'>
+                                <t:multiLabels>
+                                    <Label id="id_BI1" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
+                                    <Label id="idBrand_l1" textAlign="Center" wrapping="true" text="{i18n>Brand}" required="false" />
+                                </t:multiLabels>
+                                <t:template>
+                                    <Select
+                                        id="idBrand_s1"
+                                        change="handleChangeSelect"
+                                        valueState='{gModelRef>Fld_VS_Brand}'
+                                        valueStateText='{gModelRef>Fld_VST_Brand}'
+                                        forceSelection="false"
+                                        width="100%"
+                                        selectedKey="{
+                                            path: 'gModelRef>Brand',
+                                            parts:['gModelRef>Brand']
+                                        }"
+                                        items="{
+                                            templateShareable:false,
+                                            path: 'gModelRef>/DataTable/Brand'
+                                        }"
+                                        editable='{gModelRef>/editable}'
+                                    >
+                                        <core:Item id="idBrand_si1" key="{gModelRef>code}" text="{gModelRef>name}" />
+                                    </Select>
+                                </t:template>
+                            </t:Column>
                             <t:Column id="idNotes_c1" sortProperty="Notes" filterProperty="Notes" resizable="true" width='3.5rem'>
                                 <t:multiLabels>
                                     <Label id="id_AF8" textAlign="Center" width="100%" text="{i18n>AdditionalFields}" />
@@ -534,7 +561,7 @@
                                         id="idStart_of_Construction_i1"
                                         placeholder="Enter Date"
                                         valueFormat="yyyy-MM-dd"
-                                        displayFormat="dd/MM/yyyy"
+                                        displayFormat="yyyy-MM-dd"
                                         valueState='{gModelRef>Fld_VS_Start_of_Construction}'
                                         valueStateText='{gModelRef>Fld_VST_Start_of_Construction}'
                                         tooltip='{gModelRef>Start_of_Construction}'
@@ -555,7 +582,7 @@
                                         id="idEnd_of_Construction_i1"
                                         placeholder="Enter Date"
                                         valueFormat="yyyy-MM-dd"
-                                        displayFormat="dd/MM/yyyy"
+                                        displayFormat="yyyy-MM-dd"
                                         valueState='{gModelRef>Fld_VS_End_of_Construction}'
                                         valueStateText='{gModelRef>Fld_VST_End_of_Construction}'
                                         tooltip='{gModelRef>End_of_Construction}'

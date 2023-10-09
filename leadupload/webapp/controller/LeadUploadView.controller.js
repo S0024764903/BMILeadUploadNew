@@ -181,7 +181,9 @@ sap.ui.define([
                         { code: "AT", name: this.getLanguageText("Austria") },
                         { code: "CH", name: this.getLanguageText("Switzerland") },
                         { code: "FR", name: this.getLanguageText("France") },
-                        { code: "IE", name: this.getLanguageText("Ireland") }
+                        { code: "IE", name: this.getLanguageText("Ireland") },
+                        { code: "BE", name: this.getLanguageText("Belgium") },
+                        { code: "NL", name: this.getLanguageText("Netherlands") }
                     ],
                     Contact_Information_Title: [
                         { code: "0001", name: this.getLanguageText("Ms") },
@@ -201,7 +203,6 @@ sap.ui.define([
                         { code: "Z015", name: this.getLanguageText("MmeMs") },
                     ],
                     Brand: [
-                        { code: "ADK", name: this.getLanguageText("ADK") },
                         { code: "BRS", name: this.getLanguageText("BRS") },
                         { code: "ICO", name: this.getLanguageText("ICO") },
                         { code: "KLO", name: this.getLanguageText("KLO") },
@@ -213,7 +214,9 @@ sap.ui.define([
                         { code: "SIP", name: this.getLanguageText("SIP") },
                         { code: "VED", name: this.getLanguageText("VED") },
                         { code: "WOL", name: this.getLanguageText("WOL") },
-                        { code: "ZAN", name: this.getLanguageText("ZAN") }
+                        { code: "ZAN", name: this.getLanguageText("ZAN") },
+                        { code: "BRA", name: this.getLanguageText("BRA") },
+                        { code: "GEN", name: this.getLanguageText("GEN") }
                     ],
                     Building_Cost_Currency: [
                         { code: "EUR", name: this.getLanguageText("Euro") },
@@ -286,56 +289,40 @@ sap.ui.define([
                         { code: "Z50", name: this.getLanguageText("Z50") },
                     ],
                     Segment_Specialization_2: [
-                        { code: "Z01", name: this.getLanguageText("Z01") },
-                        { code: "Z02", name: this.getLanguageText("Z02") },
-                        { code: "Z03", name: this.getLanguageText("Z03") },
-                        { code: "Z04", name: this.getLanguageText("Z04") },
-                        { code: "Z05", name: this.getLanguageText("Z05") },
-                        { code: "Z06", name: this.getLanguageText("Z06") },
-                        { code: "Z07", name: this.getLanguageText("Z07") },
-                        { code: "Z08", name: this.getLanguageText("Z08") },
-                        { code: "Z09", name: this.getLanguageText("Z09") },
-                        { code: "Z10", name: this.getLanguageText("ZZ10") },
-                        { code: "Z11", name: this.getLanguageText("Z11") },
-                        { code: "Z12", name: this.getLanguageText("Z12") },
-                        { code: "Z13", name: this.getLanguageText("Z13") },
-                        { code: "Z14", name: this.getLanguageText("Z14") },
-                        { code: "Z15", name: this.getLanguageText("Z15") },
-                        { code: "Z16", name: this.getLanguageText("Z16") },
-                        { code: "Z17", name: this.getLanguageText("Z17") },
-                        { code: "Z18", name: this.getLanguageText("Z18") },
-                        { code: "Z19", name: this.getLanguageText("Z19") },
-                        { code: "Z20", name: this.getLanguageText("ZZ20") },
-                        { code: "Z21", name: this.getLanguageText("Z21") },
-                        { code: "Z22", name: this.getLanguageText("Z22") },
-                        { code: "Z23", name: this.getLanguageText("Z23") },
-                        { code: "Z24", name: this.getLanguageText("Z24") },
-                        { code: "Z25", name: this.getLanguageText("Z25") },
-                        { code: "Z26", name: this.getLanguageText("Z26") },
-                        { code: "Z27", name: this.getLanguageText("Z27") },
-                        { code: "Z28", name: this.getLanguageText("Z28") },
-                        { code: "Z29", name: this.getLanguageText("Z29") },
-                        { code: "Z30", name: this.getLanguageText("ZZ30") },
-                        { code: "Z31", name: this.getLanguageText("Z31") },
-                        { code: "Z32", name: this.getLanguageText("Z32") },
-                        { code: "Z33", name: this.getLanguageText("Z33") },
-                        { code: "Z34", name: this.getLanguageText("Z34") },
+                        { code: "Z49", name: this.getLanguageText("Z49") },
+                        { code: "Z48", name: this.getLanguageText("Z48") },
+                        { code: "Z37", name: this.getLanguageText("Z37") },
+                        { code: "Z40", name: this.getLanguageText("ZZ40") },
                         { code: "Z35", name: this.getLanguageText("Z35") },
                         { code: "Z36", name: this.getLanguageText("Z36") },
-                        { code: "Z37", name: this.getLanguageText("Z37") },
+                        { code: "Z34", name: this.getLanguageText("Z34") },
+                        { code: "Z32", name: this.getLanguageText("Z32") },
+                        { code: "Z33", name: this.getLanguageText("Z33") },
                         { code: "Z38", name: this.getLanguageText("Z38") },
                         { code: "Z39", name: this.getLanguageText("Z39") },
-                        { code: "Z40", name: this.getLanguageText("ZZ40") },
+                        { code: "Z76", name: this.getLanguageText("Z76") },
                         { code: "Z41", name: this.getLanguageText("Z41") },
+                        { code: "Z25", name: this.getLanguageText("Z25") },
+                        { code: "Z23", name: this.getLanguageText("Z23") },
+                        { code: "Z24", name: this.getLanguageText("Z24") },
+                        { code: "Z29", name: this.getLanguageText("Z29") },
+                        { code: "Z28", name: this.getLanguageText("Z28") },
+                        { code: "Z26", name: this.getLanguageText("Z26") },
+                        { code: "Z30", name: this.getLanguageText("ZZ30") },
+                        { code: "Z77", name: this.getLanguageText("Z77") },
+                        { code: "Z50", name: this.getLanguageText("ZZ50") },
+                        { code: "Z78", name: this.getLanguageText("Z78") },
+                        { code: "Z44", name: this.getLanguageText("Z44") },
+                        { code: "Z47", name: this.getLanguageText("Z47") },
                         { code: "Z42", name: this.getLanguageText("Z42") },
                         { code: "Z43", name: this.getLanguageText("Z43") },
-                        { code: "Z44", name: this.getLanguageText("Z44") },
                         { code: "Z45", name: this.getLanguageText("Z45") },
                         { code: "Z46", name: this.getLanguageText("Z46") },
-                        { code: "Z47", name: this.getLanguageText("Z47") },
-                        { code: "Z48", name: this.getLanguageText("Z48") },
-                        { code: "Z49", name: this.getLanguageText("Z49") },
-                        { code: "Z50", name: this.getLanguageText("ZZ50") },
+                        { code: "Z27", name: this.getLanguageText("Z27") },
+                        { code: "Z31", name: this.getLanguageText("Z31") },
+                        { code: "Z79", name: this.getLanguageText("Z79") },
+                        { code: "Z91", name: this.getLanguageText("Z91") },
+                        { code: "Z92", name: this.getLanguageText("Z92") },
                         { code: "Z51", name: this.getLanguageText("Z51") },
                         { code: "Z52", name: this.getLanguageText("Z52") },
                         { code: "Z53", name: this.getLanguageText("Z53") },
@@ -344,14 +331,20 @@ sap.ui.define([
                         { code: "Z56", name: this.getLanguageText("Z56") },
                         { code: "Z57", name: this.getLanguageText("Z57") },
                         { code: "Z58", name: this.getLanguageText("Z58") },
-                        { code: "Z59", name: this.getLanguageText("Z59") },
-                        { code: "Z60", name: this.getLanguageText("Z60") },
-                        { code: "Z61", name: this.getLanguageText("Z61") },
-                        { code: "Z62", name: this.getLanguageText("Z62") },
                         { code: "Z63", name: this.getLanguageText("Z63") },
                         { code: "Z64", name: this.getLanguageText("Z64") },
                         { code: "Z65", name: this.getLanguageText("Z65") },
-                        { code: "Z66", name: this.getLanguageText("Z66") },
+                        { code: "Z80", name: this.getLanguageText("Z80") },
+                        { code: "Z81", name: this.getLanguageText("Z81") },
+                        { code: "Z82", name: this.getLanguageText("Z82") },
+                        { code: "Z83", name: this.getLanguageText("Z83") },
+                        { code: "Z84", name: this.getLanguageText("Z84") },
+                        { code: "Z85", name: this.getLanguageText("Z85") },
+                        { code: "Z86", name: this.getLanguageText("Z86") },
+                        { code: "Z87", name: this.getLanguageText("Z87") },
+                        { code: "Z88", name: this.getLanguageText("Z88") },
+                        { code: "Z89", name: this.getLanguageText("Z89") },
+                        { code: "Z90", name: this.getLanguageText("Z90") }
                     ],
                     Specialisation_FR_PR: [
                         { code: "Z10", name: this.getLanguageText("Z10_FR_PR") },
@@ -433,24 +426,9 @@ sap.ui.define([
                     oItem.Status = that.fnFormat_Status(oItem.Status);
                     oItem.Qualification_Level = that.fnFormat_Qualification_Level(oItem.Qualification_Level);
                     oItem.Contact_Information_Title = that.fnFormat_Contact_Information_Title(oItem.Contact_Information_Title);
-            
-                    // if(oItem.End_of_Construction !== ""){
-                    //     oItem.End_of_Construction = that.resetDateTime(oItem.End_of_Construction);
-                    // }
-                    // if(oItem.Start_of_Construction !== ""){
-                    //     oItem.Start_of_Construction = that.resetDateTime(oItem.Start_of_Construction);
-                    // }
                 });
                 that.gModelRef.refresh();
             },
-
-            // resetDateTime: function (sDate) {
-            //     var sFinalDate = sDate;
-            //     if(sDate.length <= 10){
-            //         sFinalDate = sDate.concat("T00:00:00"); 
-            //     }
-            //     return sFinalDate;
-            // },
 
             resetDateTime:function(acRows){
                 var finalRows = acRows;
@@ -542,7 +520,7 @@ sap.ui.define([
                             colSetting.required = true;
                         if (colSetting.field == "Qualification_Level" || colSetting.field == "Status" ||
                             colSetting.field == "Source" || colSetting.field == "Category" || colSetting.field == "Account_Information_Country" ||
-                            colSetting.field == "Individual_Customer_Information_Country" || colSetting.field == "Gross_Roof_AreaUnitCode" ||
+                            colSetting.field == "Gross_Roof_AreaUnitCode" ||
                             colSetting.field == "Segment_Specialization_2" || colSetting.field == "Contact_Information_Title" || colSetting.field == "Specialisation_FR_PR" || 
                             colSetting.field == "Building_Cost_Currency")
                             colSetting.collection = true;
@@ -562,7 +540,7 @@ sap.ui.define([
                             colSetting.width = "10rem";
                         else if (colSetting.field == "Company" || colSetting.field == "Customer_Information_City" ||
                             colSetting.field == "Account_Information_Country" || colSetting.field == "Contact_Information_Title" || colSetting.field == "Contact_First_Name" ||
-                            colSetting.field == "Contact_Middle_Name" || colSetting.field == "Contact_Last_Name" || colSetting.field == "Individual_Customer_Information_Country" ||
+                            colSetting.field == "Contact_Middle_Name" || colSetting.field == "Contact_Last_Name" || 
                             colSetting.field == "Address_1" || colSetting.field == "Address_2")
                             colSetting.width = "15rem";
                         else if (colSetting.field == "Notes")
@@ -584,7 +562,7 @@ sap.ui.define([
                         !this.hasValue(dataObj.Address_1) && !this.hasValue(dataObj.Address_2) && !this.hasValue(dataObj.Contact_Information_Mobile) &&
                         !this.hasValue(dataObj.Account_Information_Postal_Code) && !this.hasValue(dataObj.Account_Information_Country) && !this.hasValue(dataObj.Contact_Information_Title) &&
                         !this.hasValue(dataObj.Contact_First_Name) && !this.hasValue(dataObj.Contact_Middle_Name) && !this.hasValue(dataObj.Contact_Last_Name) &&
-                        !this.hasValue(dataObj.Contact_Information_Phone) && !this.hasValue(dataObj.Contact_Information_Email) && !this.hasValue(dataObj.Individual_Customer_Information_Country) &&
+                        !this.hasValue(dataObj.Contact_Information_Phone) && !this.hasValue(dataObj.Contact_Information_Email) && 
                         !this.hasValue(dataObj.LM_BR_Reference_Number) &&
                         !this.hasValue(dataObj.Gross_Roof_Area) && !this.hasValue(dataObj.Gross_Roof_AreaUnitCode) &&
                         !this.hasValue(dataObj.Segment_Specialization_2) && !this.hasValue(dataObj.Notes) && !this.hasValue(dataObj.Start_of_Construction) && !this.hasValue(dataObj.End_of_Construction) &&
@@ -603,14 +581,14 @@ sap.ui.define([
                 this.gModelRef.refresh();
             },
 
-            validateLeads: function (bValue) {
-                
+            validateLeads: function (bValue) {                
                 this.resetModelValues();
                 this.resetActualKeysForFields(this.gModelRef.getData().LeadList.rows, this);
                 this.DataCategory.Tot_Leads = $.extend(true, [], this.gModelRef.getData().LeadList.rows);
                 if (this.DataCategory.Tot_Leads.length > 0) {
                     for (var i = 0; i < this.DataCategory.Tot_Leads.length; i++) {
                         $.each(constants.COLUMN_FIELDS, function (c, field) {
+                            var bError = false;
                             this.DataCategory.Tot_Leads[i].Row_State = "Success";
                             this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VS_}${field}`] = sap.ui.core.ValueState.None;
                             this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VST_}${field}`] = "";
@@ -627,17 +605,6 @@ sap.ui.define([
                         }.bind(this));
                         $.each(constants.PARTIAL_MANDATORY_FIELDS, function (c, field) {
                             var bError = false;
-                            // if (c.indexOf("Expected_Revenue_Amount_Currency") > -1) {
-                            //     if (this.DataCategory.Tot_Leads[i].Expected_Revenue_Value === "") {
-                            //         this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VS_}Expected_Revenue_Amount_Currency`] = sap.ui.core.ValueState.None;
-                            //         this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VST_}Expected_Revenue_Amount_Currency`] = "";
-                            //     } else if (this.DataCategory.Tot_Leads[i].Expected_Revenue_Value !== "" && this.DataCategory.Tot_Leads[i].Expected_Revenue_Amount_Currency === "") {
-                            //         bError = true;
-                            //         this.ErrorFields.push(`${constants.PREFIXES.Err_ND_}${field}`);
-                            //         this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VS_}Expected_Revenue_Amount_Currency`] = sap.ui.core.ValueState.Error;
-                            //         this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Fld_VST_}Expected_Revenue_Amount_Currency`] = this.getLanguageText(`${constants.PREFIXES.Err_ND_}Expected_Revenue_Amount_Currency`);
-                            //     }
-                            // }
                            
                             if (c.indexOf("Gross_Roof_AreaUnitCode") > -1) {
                                 if (this.DataCategory.Tot_Leads[i].Gross_Roof_Area === "") {
@@ -680,7 +647,7 @@ sap.ui.define([
                                 sValue = this.fnFormat_Source(this.DataCategory.Tot_Leads[i][field]);
                             if (field == "Contact_Information_Title")
                                 sValue = this.fnFormat_Contact_Information_Title(this.DataCategory.Tot_Leads[i][field]);
-                            if (field == "Account_Information_Country" || field == "Individual_Customer_Information_Country") {
+                            if (field == "Account_Information_Country") {
                                 this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Err_INV_}${field}`] = (this.gModelRef.getData().DataTable["Country"].some(function (itm) { return itm.code == sValue }) ? false : true);
                             } else {
                                 this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Err_INV_}${field}`] = (this.gModelRef.getData().DataTable[field].some(function (itm) { return itm.code == sValue }) ? false : true);
@@ -704,9 +671,6 @@ sap.ui.define([
                             if (field == "Contact_Information_Email") {
                                 this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Err_FRMT_}${field}`] = (this.hasValue(sValue) ? /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(sValue) ? false : true : false);
                             }
-                            // if (field == "Expected_Revenue_Value") {
-                            //     this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Err_FRMT_}${field}`] = (this.hasValue(sValue) ? /^\d+([.]\d{0,2})?$/.test(sValue) ? false : true : false);
-                            // }
                             if (field == "Building_Cost") {
                                 this.DataCategory.Tot_Leads[i][`${constants.PREFIXES.Err_FRMT_}${field}`] = (this.hasValue(sValue) ? /^\d+([.]\d{0,2})?$/.test(sValue) ? false : true : false);
                             }
